@@ -4,6 +4,11 @@ class Home extends Controller
 {
     public function index()
     {
-        echo 'Ini  halaman Home';
+
+        $data['title'] = 'Halaman Home';
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('home/index', $data);
+        $this->view('templates/footer', $data);
     }
 }
