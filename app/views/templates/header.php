@@ -26,14 +26,17 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/material-dashboard.css?v=2.1.2'" rel="stylesheet" />
+    <link rel="stylesheet" href="<?= base_url; ?>/assets/css/material-dashboard.css?v=2.1.2'" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="assets/demo/demo.css'" rel="stylesheet" />
+    <link href="<?= base_url; ?>/assets/demo/demo.css'" rel="stylesheet" />
 
-    <script src="assets/js/jquery.min.js'"></script>
+    <script src="<?= base_url; ?>/assets/js/jquery.min.js'"></script>
+
     <style type="text/css">
 
     </style>
+
+
 </head>
 
 <body class="">
@@ -44,21 +47,21 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
-            <div class="logo"><a href="/home" class="simple-text logo-normal">
+            <div class="logo"><a href="<?= base_url; ?>/home" class="simple-text logo-normal">
                     PAUD ASSBIYAN
                 </a></div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="home/pendaftaran'">
+                        <a class="nav-link" href=" <?= base_url; ?>/pendaftaran">
                             <i class="material-icons"></i>
                             <p>Pendaftaran</p>
                         </a>
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="home/aktifasi">
+                        <a class="nav-link" href="<?= base_url; ?>/aktifasi">
                             <p>Aktivasi Akun</p>
                         </a>
                     </li>
