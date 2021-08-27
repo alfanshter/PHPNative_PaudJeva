@@ -15,7 +15,9 @@
           <!-- Default box -->
           <div class="card">
               <div class="card-header">
-                  <h3 class="card-title"><?= $data['title']; ?></h3>
+                  <center>
+                      <h3 class="card-title"><?= $data['title']; ?></h3>
+                  </center>
               </div>
               <div class="card-body">
                   Selamat datang dihalaman buku kita!

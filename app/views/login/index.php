@@ -370,7 +370,7 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
 
             <!-- Login Form -->
-            <form action="<?= base_url; ?>/admin/loginproses" method="POST">
+            <form action="<?= base_url; ?>/login/proseslogin" method="POST">
                 <input type="text" autocomplete="off" required id="username" class="fadeIn second" name="username" placeholder="Enter username">
                 <input type="password" id="password" required class="fadeIn third" name="password" placeholder="Password">
                 <input type="submit" class="fadeIn fourth" value="Log In">

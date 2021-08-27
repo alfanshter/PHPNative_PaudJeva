@@ -11,6 +11,13 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+<?php
+if (!empty($_SESSION['role'])) {
+    $role = $_SESSION['role'];
+} else {
+    $role = $_SESSION['role'] = 0;
+}
+?>
 
 <head>
     <meta charset="utf-8" />
@@ -39,6 +46,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 </head>
 
+
+
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg'">
@@ -53,23 +62,63 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="sidebar-wrapper">
                 <ul class="nav">
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href=" <?= base_url; ?>/pendaftaran">
-                            <i class="material-icons"></i>
-                            <p>Pendaftaran</p>
-                        </a>
-                    </li>
+                    <?php
+                    if ($role == 0) {
+                    ?>
+                        <li class="nav-item ">
+                            <a class="nav-link" href=" <?= base_url; ?>/pendaftaran">
+                                <i class="material-icons"></i>
+                                <p>Pendaftaran</p>
+                            </a>
+                        </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url; ?>/aktifasi">
-                            <p>Aktivasi Akun</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url; ?>/login">
-                            <p>Login</p>
-                        </a>
-                    </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/aktifasi">
+                                <p>Aktivasi Akun</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/login">
+                                <p>Login</p>
+                            </a>
+                        </li>
+
+                    <?php               } else if ($role == "1") {
+                    ?>
+                        <li class="nav-item ">
+                            <a class="nav-link" href=" <?= base_url; ?>/dashboard">
+                                <i class="material-icons"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/aktifasi">
+                                <p>Admin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/login">
+                                <p>Anggota Siswa</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/login">
+                                <p>Data Pendaftaran</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url; ?>/login">
+                                <p>Data Guru</p>
+                            </a>
+                        </li>
+
+
+
+                    <?php                     }
+                    ?>
 
                 </ul>
             </div>
@@ -94,7 +143,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     </p>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="{{url('logout')}}">Log out</a>
+                                    <a class="dropdown-item" href="<?= base_url; ?>/login/logout">Log out</a>
                                 </div>
                             </li>
                         </ul>
