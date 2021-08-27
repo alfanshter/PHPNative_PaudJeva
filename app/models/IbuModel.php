@@ -23,7 +23,7 @@ class IbuModel
 
     public function tambahIbu($data)
     {
-        $query = "INSERT INTO tb_ibu (nama,nik,ttl,tempat_lahir,pendidikan_terakhir,pekerjaan,status,penghasilan)
+        $query = "INSERT INTO tb_ibu (nama_ibu,nik_ibu,ttl_ibu,tempat_lahir_ibu,pendidikan_terakhir_ibu,pekerjaan_ibu,status_ibu,penghasilan_ibu)
          VALUES(:nama,:nik,:ttl,:tempat_lahir,:pendidikan_terakhir,:pekerjaan,:status,:penghasilan)";
         $this->db->query($query);
         $this->db->bind('nama', $data['nama_ibu']);

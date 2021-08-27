@@ -23,7 +23,7 @@ class AyahModel
 
     public function tambahAyah($data)
     {
-        $query = "INSERT INTO tb_ayah (nama,nik,ttl,tempat_lahir,pendidikan_terakhir,pekerjaan,status,penghasilan)
+        $query = "INSERT INTO tb_ayah (nama_ayah,nik_ayah,ttl_ayah,tempat_lahir_ayah,pendidikan_terakhir_ayah,pekerjaan_ayah,status_ayah,penghasilan_ayah)
          VALUES(:nama,:nik,:ttl,:tempat_lahir,:pendidikan_terakhir,:pekerjaan,:status,:penghasilan)";
         $this->db->query($query);
         $this->db->bind('nama', $data['nama_ayah']);

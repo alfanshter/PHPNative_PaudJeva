@@ -15,9 +15,11 @@ class Login extends Controller
             $role = $row['role'];
             if ($role == "1") {
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['id_siswa'] = $row['kode_siswa'];
                 header('location:' . base_url . '/admin');
             } else if ($role == "0") {
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['id_siswa'] = $row['kode_siswa'];
                 header('location:' . base_url . '/user');
             }
         } else {

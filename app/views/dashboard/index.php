@@ -25,10 +25,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
-                        <div class="box">
-                            <img src="<?= base_url; ?>/img/biodata.png" alt="" width="200" height="200"><br>
-                            Data Siswa
-                        </div>
+                        <a href="<?= base_url; ?>/datasiswa">
+                            <div class="box">
+                                <img src="<?= base_url; ?>/img/biodata.png" alt="" width="200" height="200"><br>
+                                Data Siswa
+                            </div>
+
+                        </a>
                     </div>
                     <div class="col-sm">
                         <div class="box">

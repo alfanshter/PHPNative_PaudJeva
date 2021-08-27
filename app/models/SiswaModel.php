@@ -17,8 +17,18 @@ class SiswaModel
         return $this->db->resultSet();
     }
 
-    public function getKategoriById($id)
+    public function getdataallsiswa()
     {
+        $query = "SELECT * FROM tb_siswa";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function getdatasiswa($id_siswa)
+    {
+        $query = "SELECT * FROM tb_siswa s JOIN tb_ayah a ON s.nik_ayah=a.nik_ayah JOIN tb_ibu i ON s.nik_ibu=i.nik_ibu WHERE s.id_siswa = $id_siswa";
+        $this->db->query($query);
+        return $this->db->resultSet();
     }
 
     public function tambahSiswa($data)
