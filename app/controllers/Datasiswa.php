@@ -23,4 +23,14 @@ class Datasiswa extends Controller
             exit;
         }
     }
+
+    public function carisiswa()
+    {
+        $data['title'] = 'Halaman Data Siswa';
+        $data['datasiswa_all'] = $this->model('SiswaModel')->cariSiswa();
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('dashboard/datasiswa', $data);
+        $this->view('templates/footer', $data);
+    }
 }

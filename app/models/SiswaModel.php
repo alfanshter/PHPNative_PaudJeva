@@ -100,7 +100,12 @@ class SiswaModel
         return $this->db->rowCount();
     }
 
-    public function cariKategori()
+    public function cariSiswa()
     {
+        $key = $_POST['key'];
+        $query = "SELECT * FROM tb_siswa WHERE status = 1 AND nama LIKE :key";
+        $this->db->query($query);
+        $this->db->bind('key', "%$key%");
+        return $this->db->resultSet();
     }
 }

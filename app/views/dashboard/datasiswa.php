@@ -49,11 +49,11 @@ $id_siswa = 0;
                                     </button>
                                 </div>
                                 <div class="col-lg-9">
-                                    <form action="{{ url('search-customer') }}" method="GET">
-                                        <!-- @csrf -->
+                                    <form action="<?= base_url; ?>/datasiswa/carisiswa" method="POST">
                                         <div class="input-group mb-3 mt-2">
-                                            <input type="text" class="form-control" name="cari" placeholder="Cari Siswa" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <input type="text" class="form-control" name="key" placeholder="Cari Siswa" aria-label="Recipient's username" aria-describedby="button-addon2">
                                             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+                                            <a href="<?= base_url; ?>/datasiswa"><button class="btn btn-outline-secondary" type="button">Reset</button></a>
                                         </div>
                                     </form>
                                 </div>
