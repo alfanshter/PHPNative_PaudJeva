@@ -1,3 +1,6 @@
+<?php
+$id_siswa = 0;
+?>
 <div class="content mt-5">
     <div class="container-fluid">
         <div class="row">
@@ -65,24 +68,28 @@
 
                                         <?php $i = 1; ?>
                                         <?php
+
                                         foreach ($data['datasiswa_all'] as $siswa) : ?>
-                                            <tr>
-                                                <th scope="row"><?= $i; ?></th>
-                                                <td><?php echo $siswa['nama'] ?></td>
-                                                <td>
-                                                    <form action="{{ route('customer.destroy',$item->Id_Pelanggan) }}" method="POST">
+                                            <form action="<?= base_url; ?>/detailsiswa/<?= $siswa['id_siswa']; ?>">
+                                                <tr>
+                                                    <th scope="row"><?= $i; ?></th>
+                                                    <td><?php echo $siswa['nama'] ?></td>
+                                                    <td>
+
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="/admin/detail_pelanggan" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $siswa['id_siswa']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
+
                                                             <button onclick="return confirm('Apakah anda yakin akan menghapus?')" type="submit" class="btn btn-danger"><span style="color: white" class="material-icons">
                                                                     delete
                                                                 </span></button>
                                                         </div>
-                                                    </form>
-                                                </td>
+                                                    </td>
 
-                                            </tr>
+                                                </tr>
+
+                                            </form>
                                         <?php $i++;
                                         endforeach; ?>
 
@@ -101,32 +108,98 @@
     </div>
 </div>
 
-<!-- Modal
-    <div class="modal fade" id="tambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modal Tambah siswa -->
+<div class="modal fade" id="tambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Pelanggan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nama Pelanggan</label>
+                    <input type="text" required class="form-control" name="nama" id="exampleInputEmail1" aria-describedby="nama">
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nama Pelanggan</label>
-                        <input type="text" required class="form-control" name="nama" id="exampleInputEmail1" aria-describedby="nama">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">No. Telp</label>
-                        <input type="text" name="telepon" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-                        <textarea class="form-control" name="alamat" required id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">No. Telp</label>
+                    <input type="text" name="telepon" class="form-control" required>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
+                    <textarea class="form-control" name="alamat" required id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal Edit Siswa -->
+<div class="modal fade" id="detaildatasiswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                var_dump($id_siswa);
+                ?>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Data Siswa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nama Siswa</label>
+                    <input type="text" required class="form-control" name="nama" id="exampleInputEmail1" aria-describedby="nama">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">NISN</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Tempat/Tanggal Lahir</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Jenis Kelamin :</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Agama : </label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Alamat :</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nama Ayah :</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nama Ibu :</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"> No. Telepon/HP:</label>
+                    <input type="text" name="telepon" class="form-control" required>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
