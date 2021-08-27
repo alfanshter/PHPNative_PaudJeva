@@ -40,10 +40,12 @@
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="box">
-                            <img src="<?= base_url; ?>/img/book.png" alt="" width="200" height="200"><br>
-                            Data Siswa
-                        </div>
+                        <a href="<?= base_url; ?>/jadwalkegiatansiswa">
+                            <div class="box">
+                                <img src="<?= base_url; ?>/img/book.png" alt="" width="200" height="200"><br>
+                                Jadwal Kegiatan Siswa
+                            </div>
+                        </a>
                     </div>
 
 
