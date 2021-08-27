@@ -12,6 +12,9 @@
                             <p> <b>*Harap diisi dengan benar dan teliti</b></p>
 
                             <h3 align="end"> <b>Data Siswa</b></h3>
+                            <?php
+                            Flasher::Message();
+                            ?>
                             <form role="form" action="<?= base_url; ?>/pendaftaran/daftarsiswa" method="POST" enctype="multipart/form-data">
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Nama</span>

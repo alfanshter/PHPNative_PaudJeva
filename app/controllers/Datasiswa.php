@@ -11,4 +11,16 @@ class Datasiswa extends Controller
         $this->view('dashboard/datasiswa', $data);
         $this->view('templates/footer', $data);
     }
+
+    public function deletesiswa()
+    {
+        if ($this->model('SiswaModel')->hapussiswa($_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'dihapus', 'success');
+            header('location: ' . base_url . '/datasiswa');
+        } else {
+            Flasher::setMessage('Gagal', 'dihapus', 'danger');
+            header('location: ' . base_url . '/datasiswa');
+            exit;
+        }
+    }
 }

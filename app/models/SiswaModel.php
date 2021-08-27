@@ -19,7 +19,7 @@ class SiswaModel
 
     public function getdataallsiswa()
     {
-        $query = "SELECT * FROM tb_siswa";
+        $query = "SELECT * FROM tb_siswa WHERE status = 1";
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -90,12 +90,14 @@ class SiswaModel
         return $this->db->rowCount();
     }
 
-    public function updateDataKategori($data)
+    public function hapussiswa($data)
     {
-    }
+        $query = "DELETE tb_siswa, users FROM tb_siswa INNER JOIN users ON tb_siswa.id_siswa = users.kode_siswa WHERE id_siswa = :id_siswa";
+        $this->db->query($query);
+        $this->db->bind('id_siswa', $data['id_siswa']);
+        $this->db->execute();
 
-    public function deleteKategori($id)
-    {
+        return $this->db->rowCount();
     }
 
     public function cariKategori()
