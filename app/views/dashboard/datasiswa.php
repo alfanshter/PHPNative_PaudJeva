@@ -40,6 +40,9 @@ $id_siswa = 0;
                             </div>
                             @endif -->
                             <div class="row">
+                                <?php
+                                Flasher::Message();
+                                ?>
                                 <div class="col-lg-3">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahCustomer">
                                         Tambah

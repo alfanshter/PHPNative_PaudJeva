@@ -16,8 +16,11 @@ class DetailSiswa extends Controller
     public function editsiswa()
     {
         if ($this->model('SiswaModel')->updateSiswa($_POST) > 0) {
-            Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
-            header('location: ' . base_url . '/pendaftaran');
+            Flasher::setMessage('Berhasil', 'diUpdate', 'success');
+            header('location: ' . base_url . '/datasiswa');
+        } else {
+            Flasher::setMessage('Gagal', 'diUpdate', 'danger');
+            header('location: ' . base_url . '/datasiswa');
         }
     }
 }
