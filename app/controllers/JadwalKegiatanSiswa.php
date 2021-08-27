@@ -5,32 +5,21 @@ class JadwalKegiatanSiswa extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Data Siswa';
-        $data['datasiswa_all'] = $this->model('SiswaModel')->getdataallsiswa();
+        $data['jadwal'] = $this->model('JadwalModel')->getJadwal();
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('dashboard/jadwal_kegiatan_siswa', $data);
         $this->view('templates/footer', $data);
     }
 
-    public function deletesiswa()
+    public function tambah_jadwal()
     {
-        if ($this->model('SiswaModel')->hapussiswa($_POST) > 0) {
-            Flasher::setMessage('Berhasil', 'dihapus', 'success');
-            header('location: ' . base_url . '/datasiswa');
+        if ($this->model('JadwalModel')->insertJadwal($_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
+            header('location: ' . base_url . '/jadwalkegiatansiswa');
         } else {
-            Flasher::setMessage('Gagal', 'dihapus', 'danger');
-            header('location: ' . base_url . '/datasiswa');
-            exit;
+            Flasher::setMessage('gagal', 'ditambahkan', 'danger');
+            header('location: ' . base_url . '/jadwalkegiatansiswa');
         }
-    }
-
-    public function carisiswa()
-    {
-        $data['title'] = 'Halaman Data Siswa';
-        $data['datasiswa_all'] = $this->model('SiswaModel')->cariSiswa();
-        $this->view('templates/header', $data);
-        $this->view('templates/sidebar', $data);
-        $this->view('dashboard/datasiswa', $data);
-        $this->view('templates/footer', $data);
     }
 }
