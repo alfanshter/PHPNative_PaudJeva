@@ -52,4 +52,13 @@ class JadwalModel
 
         return $this->db->rowCount();
     }
+
+    public function deleteJadwal($id_jadwal)
+    {
+        $query = "DELETE FROM tb_jadwal WHERE id_jadwal = $id_jadwal";
+        $this->db->query($query);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }

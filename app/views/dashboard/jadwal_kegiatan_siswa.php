@@ -63,7 +63,7 @@ $id_jadwal = 0;
                                         <?php
 
                                         foreach ($data['jadwal'] as $jadwal) : ?>
-                                            <form action="<?= base_url; ?>/datasiswa/deletesiswa" method="POST">
+                                            <form action="<?= base_url; ?>/jadwalkegiatansiswa/deletejadwal/<?= $jadwal['id_jadwal']; ?>" method="POST">
                                                 <tr>
                                                     <th scope="row"><?php echo $jadwal['waktu_jadwal'] ?></th>
                                                     <td><?php echo $jadwal['kegiatan_jadwal'] ?></td>
@@ -110,7 +110,7 @@ $id_jadwal = 0;
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form role="form" action="<?= base_url; ?>/jadwalkegiatansiswa/tambah_jadwalgi" method="POST" enctype="multipart/form-data">
+                <form role="form" action="<?= base_url; ?>/jadwalkegiatansiswa/tambah_jadwal" method="POST" enctype="multipart/form-data">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Jadwal</span>
                         <input required type="text" id="jadwal" name="jadwal" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">

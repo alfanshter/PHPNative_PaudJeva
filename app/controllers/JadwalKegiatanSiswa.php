@@ -22,4 +22,15 @@ class JadwalKegiatanSiswa extends Controller
             header('location: ' . base_url . '/jadwalkegiatansiswa');
         }
     }
+
+    public function deletejadwal($id_jadwal)
+    {
+        if ($this->model('JadwalModel')->deleteJadwal($id_jadwal) > 0) {
+            Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
+            header('location: ' . base_url . '/jadwalkegiatansiswa');
+        } else {
+            Flasher::setMessage('gagal', 'ditambahkan', 'danger');
+            header('location: ' . base_url . '/jadwalkegiatansiswa');
+        }
+    }
 }
