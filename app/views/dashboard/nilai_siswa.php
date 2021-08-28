@@ -122,19 +122,63 @@ $id_jadwal = 0;
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Siswa</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form role="form" action="<?= base_url; ?>/jadwalkegiatansiswa/tambah_jadwal" method="POST" enctype="multipart/form-data">
+                <form role="form" action="<?= base_url; ?>/nilaisiswa/tambah_nilai" method="POST" enctype="multipart/form-data">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Jadwal</span>
-                        <input required type="text" id="jadwal" name="jadwal" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <select class="form-select" aria-label="Default select example" id="nik_siswa" name="nik_siswa">
+                            <option selected>Pilih Siswa</option>
+                            <?php foreach ($data['datasiswa_all'] as $siswa) : ?>
+                                <option value="<?= $siswa['nik']; ?>"><?= $siswa['nama']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Nama Kegiatan</span>
-                        <textarea required class="form-control" id="nama_kegiatan" name="nama_kegiatan" style="height: 100px"></textarea>
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Bermain</span>
+                        <input required type="number" id="bermain" name="bermain" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Ikrar Bersama</span>
+                        <input required type="number" id="ikrar_bersama" name="ikrar_bersama" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Senam Irama</span>
+                        <input required type="number" id="senam_irama" name="senam_irama" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Bernyanyi</span>
+                        <input required type="number" id="bernyanyi" name="bernyanyi" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Berdoa</span>
+                        <input required type="number" id="berdoa" name="berdoa" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Pijakan Sebelum Bermain</span>
+                        <input required type="number" id="pijakan_sebelum_bermain" name="pijakan_sebelum_bermain" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Pijakan Setelah Bermain</span>
+                        <input required type="number" id="pijakan_setelah_bermain" name="pijakan_setelah_bermain" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Tanggal Nilai</span>
+                        <input type="date" id="tanggal_nilai" name="tanggal_nilai">
+                    </div>
+
+
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
