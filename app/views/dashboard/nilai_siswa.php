@@ -86,7 +86,7 @@ $id_jadwal = 0;
                                                     <td>
 
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/detailjadwalkegiatansiswa/<?= $jadwal['id_jadwal']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailnilaisiswa/<?= $nilai['id_nilai']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
 
