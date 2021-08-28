@@ -25,14 +25,15 @@ class NilaiSiswa extends Controller
         }
     }
 
-    public function deletejadwal($id_jadwal)
+    public function deletenilai($id_nilai)
     {
-        if ($this->model('JadwalModel')->deleteJadwal($id_jadwal) > 0) {
+
+        if ($this->model('NilaiModel')->hapusNilai($id_nilai) > 0) {
             Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
-            header('location: ' . base_url . '/jadwalkegiatansiswa');
+            header('location: ' . base_url . '/nilaisiswa');
         } else {
             Flasher::setMessage('gagal', 'ditambahkan', 'danger');
-            header('location: ' . base_url . '/jadwalkegiatansiswa');
+            header('location: ' . base_url . '/nilaisiswa');
         }
     }
 }

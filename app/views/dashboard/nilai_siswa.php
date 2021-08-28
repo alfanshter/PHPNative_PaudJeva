@@ -71,7 +71,7 @@ $id_jadwal = 0;
                                         <?php
 
                                         foreach ($data['nilai'] as $nilai) : ?>
-                                            <form action="<?= base_url; ?>/jadwalkegiatansiswa/deletejadwal/<?= $jadwal['id_jadwal']; ?>" method="POST">
+                                            <form action="<?= base_url; ?>/nilaisiswa/deletenilai/<?= $nilai['id_nilai']; ?>" method="POST">
                                                 <tr>
                                                     <th scope="row"><?php echo $nilai['tanggal_nilai'] ?></th>
                                                     <td><?php echo $nilai['nama'] ?></td>

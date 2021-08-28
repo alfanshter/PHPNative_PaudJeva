@@ -69,6 +69,17 @@ berdoa = :berdoa,
         $this->db->bind('berdoa', $data['berdoa']);
         $this->db->bind('pijakan_sebelum_bermain', $data['pijakan_sebelum_bermain']);
         $this->db->bind('pijakan_setelah_bermain', $data['pijakan_setelah_bermain']);
+        $this->db->bind('tanggal_nilai', $data['tanggal_nilai']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+
+    public function hapusNilai($data)
+    {
+        $query = " DELETE FROM tb_nilai WHERE id_nilai = $data";
+        $this->db->query($query);
         $this->db->execute();
 
         return $this->db->rowCount();
