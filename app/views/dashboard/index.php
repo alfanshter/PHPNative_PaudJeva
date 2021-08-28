@@ -34,10 +34,13 @@
                         </a>
                     </div>
                     <div class="col-sm">
-                        <div class="box">
-                            <img src="<?= base_url; ?>/img/nilai.png" alt="" width="200" height="200"><br>
-                            Nilai Siswa
-                        </div>
+                        <a href="<?= base_url; ?>/nilaisiswa">
+                            <div class="box">
+                                <img src="<?= base_url; ?>/img/nilai.png" alt="" width="200" height="200"><br>
+                                Nilai Siswa
+                            </div>
+
+                        </a>
                     </div>
                     <div class="col-sm">
                         <a href="<?= base_url; ?>/jadwalkegiatansiswa">
