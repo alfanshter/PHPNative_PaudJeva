@@ -55,11 +55,14 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <div class="box">
-                            <img src="<?= base_url; ?>/img/uang.png" alt="" width="200" height="200"><br>
+                        <a href="<?= base_url; ?>/keuangansiswa">
+                            <div class="box">
+                                <img src="<?= base_url; ?>/img/uang.png" alt="" width="200" height="200"><br>
 
-                            Keuangan Siswa
-                        </div>
+                                Keuangan Siswa
+                            </div>
+
+                        </a>
                     </div>
                     <div class="col-sm">
                         <div class="box">

@@ -128,7 +128,7 @@ $id_jadwal = 0;
             <div class="modal-body">
                 <form role="form" action="<?= base_url; ?>/nilaisiswa/tambah_nilai" method="POST" enctype="multipart/form-data">
                     <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Jadwal</span>
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Nama</span>
                         <select class="form-select" aria-label="Default select example" id="nik_siswa" name="nik_siswa">
                             <option selected>Pilih Siswa</option>
                             <?php foreach ($data['datasiswa_all'] as $siswa) : ?>
