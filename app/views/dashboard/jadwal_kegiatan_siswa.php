@@ -70,7 +70,7 @@ $id_jadwal = 0;
                                                     <td>
 
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $jadwal['id_jadwal']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailjadwalkegiatansiswa/<?= $jadwal['id_jadwal']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
 
@@ -110,7 +110,7 @@ $id_jadwal = 0;
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form role="form" action="<?= base_url; ?>/jadwalkegiatansiswa/tambah_jadwal" method="POST" enctype="multipart/form-data">
+                <form role="form" action="<?= base_url; ?>/jadwalkegiatansiswa/tambah_jadwalgi" method="POST" enctype="multipart/form-data">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Jadwal</span>
                         <input required type="text" id="jadwal" name="jadwal" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
