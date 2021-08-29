@@ -42,7 +42,7 @@ $id_jadwal = 0;
                                         <?php
                                         $i = 1;
                                         foreach ($data['keuangan'] as $keuangan) : ?>
-                                            <form action="<?= base_url; ?>/jadwalkegiatansiswa/deletejadwal/<?= $keuangan['id_keuangan']; ?>" method="POST">
+                                            <form action="<?= base_url; ?>/keuangansiswa/hapuskeuangan/<?= $keuangan['id_keuangan']; ?>" method="POST">
                                                 <tr>
                                                     <th scope="row"><?php echo $i ?></th>
                                                     <td><?php echo $keuangan['nama'] ?></td>
@@ -55,7 +55,7 @@ $id_jadwal = 0;
                                                     <td>
 
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/detailjadwalkegiatansiswa/<?= $keuangan['id_keuangan']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailkeuangan/<?= $keuangan['id_keuangan']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
 

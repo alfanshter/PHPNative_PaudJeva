@@ -19,12 +19,12 @@ class KeuanganModel
     }
 
 
-    // public function getNilaiDetail($id_nilai)
-    // {
-    //     $query = "SELECT * FROM tb_siswa s JOIN tb_nilai n ON s.nik = n.nik_siswa WHERE id_nilai = $id_nilai";
-    //     $this->db->query($query);
-    //     return $this->db->single();
-    // }
+    public function getKeuanganDetail($id_keuangan)
+    {
+        $query = "SELECT * FROM tb_keuangan WHERE id_keuangan = $id_keuangan";
+        $this->db->query($query);
+        return $this->db->single();
+    }
 
     public function tambahKeuangan($data)
     {
@@ -42,13 +42,35 @@ class KeuanganModel
         return $this->db->rowCount();
     }
 
+    public function updateKeuangan($data)
+    {
+        $query = "UPDATE tb_keuangan  
+        SET
+            periode = :periode, 
+            jenis_tagihan =:jenis_tagihan,
+            nominal = :nominal, 
+            status_bayar =:status_bayar, 
+            tanggal_bayar =:tanggal_bayar
+        WHERE id_keuangan = :id_keuangan";
 
-    // public function hapusNilai($data)
-    // {
-    //     $query = " DELETE FROM tb_nilai WHERE id_nilai = $data";
-    //     $this->db->query($query);
-    //     $this->db->execute();
+        $this->db->query($query);
+        $this->db->bind('periode', $data['periode']);
+        $this->db->bind('jenis_tagihan', $data['jenis_tagihan']);
+        $this->db->bind('nominal', $data['nominal']);
+        $this->db->bind('status_bayar', $data['status_bayar']);
+        $this->db->bind('tanggal_bayar', $data['tanggal_bayar']);
+        $this->db->bind('id_keuangan', $data['id_keuangan']);
+        $this->db->execute();
 
-    //     return $this->db->rowCount();
-    // }
+        return $this->db->rowCount();
+    }
+
+    public function hapusKeuangan($data)
+    {
+        $query = "DELETE FROM tb_keuangan WHERE id_keuangan = $data";
+        $this->db->query($query);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
