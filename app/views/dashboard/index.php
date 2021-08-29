@@ -65,10 +65,12 @@
                         </a>
                     </div>
                     <div class="col-sm">
-                        <div class="box">
-                            <img src="<?= base_url; ?>/img/absen.png" alt="" width="200" height="200"><br>
-                            Absensi
-                        </div>
+                        <a href="<?= base_url; ?>/absensiswa">
+                            <div class="box">
+                                <img src="<?= base_url; ?>/img/absen.png" alt="" width="200" height="200"><br>
+                                Absensi
+                            </div>
+                        </a>
                     </div>
                     <div class="col-sm">
                     </div>
