@@ -19,4 +19,11 @@ class UsersModel
         $this->db->bind('password', $data['password']);
         return $this->db->single();
     }
+
+    public function getAdmin()
+    {
+        $query = "SELECT * FROM users u join tb_admin a on u.kode_admin = a.id_admin where role = 1";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
 }

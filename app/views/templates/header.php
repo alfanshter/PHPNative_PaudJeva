@@ -93,12 +93,12 @@ if (!empty($_SESSION['role'])) {
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?= base_url; ?>/aktifasi">
+                            <a class="nav-link" href="<?= base_url; ?>/admin">
                                 <p>Admin</p>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?= base_url; ?>/login">
+                            <a class="nav-link" href="<?= base_url; ?>/anggotasiswa">
                                 <p>Anggota Siswa</p>
                             </a>
                         </li>
