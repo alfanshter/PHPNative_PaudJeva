@@ -359,11 +359,10 @@ The above copyright notice and this permission notice shall be included in all c
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
-            <!-- <div class="alert alert-danger">
-      </div>
-      <div class="alert alert-success">
-      </div>
-      @endif -->
+
+            <?php
+            Flasher::Message();
+            ?>
             <!-- Icon -->
             <div class="fadeIn first">
                 <img src="https://img.icons8.com/cotton/128/000000/user-male--v1.png" />

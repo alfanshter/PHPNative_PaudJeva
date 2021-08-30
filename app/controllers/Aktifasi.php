@@ -9,5 +9,17 @@ class Aktifasi extends Controller
         $this->view('aktifasi/index', $data);
     }
 
-    //mulai pendaftaran siswa
+    //mulai aktifasi siswa
+    public function aktifasiSiswa()
+    {
+        if ($this->model('SiswaModel')->setstatus($_POST) > 0) {
+            if ($this->model('UsersModel')->setPassword($_POST) > 0) {
+                Flasher::setMessage('Berhasil', 'diaktifkan', 'success');
+                header('location: ' . base_url . '/home');
+            } else {
+                Flasher::setMessage('Gagal', 'diaktifkan', 'success');
+                header('location: ' . base_url . '/home');
+            }
+        }
+    }
 }

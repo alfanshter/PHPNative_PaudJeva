@@ -17,12 +17,14 @@ class Login extends Controller
                 $_SESSION['role'] = $row['role'];
                 $_SESSION['id_siswa'] = $row['kode_siswa'];
                 header('location:' . base_url . '/admin');
-            } else if ($role == "0") {
+            } else if ($role == "2") {
                 $_SESSION['role'] = $row['role'];
                 $_SESSION['id_siswa'] = $row['kode_siswa'];
-                header('location:' . base_url . '/user');
+                header('location:' . base_url . '/siswa');
             }
         } else {
+            Flasher::setMessage('Gagal', 'Login', 'danger');
+            header('location: ' . base_url . '/login');
         }
     }
 

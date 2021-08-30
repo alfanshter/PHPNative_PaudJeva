@@ -38,6 +38,13 @@ class SiswaModel
         return $this->db->single();
     }
 
+    public function getbiodata($nik_siswa)
+    {
+        $query = "SELECT * FROM tb_siswa s JOIN tb_ayah a ON s.nik_ayah=a.nik_ayah JOIN tb_ibu i ON s.nik_ibu=i.nik_ibu WHERE s.nik = $nik_siswa";
+        $this->db->query($query);
+        return $this->db->single();
+    }
+
     public function tambahSiswa($data)
     {
         $query = "INSERT INTO tb_siswa (nama,nik_ayah,nik_ibu,ttl,tempat_lahir,jk,nik,alamat,agama,jenis_tinggal,alat_transportasi,nomor_telepon,status_dalam_keluarga,penerima_kps,no_kps)
@@ -175,6 +182,19 @@ class SiswaModel
         $query = "INSERT INTO users (username,role,kode_siswa)
         VALUES($nik,10,$nik)";
         $this->db->query($query);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function setstatus($data)
+    {
+        $query = "UPDATE tb_siswa  
+        SET
+         status=1 
+            WHERE nik = :username AND status = 2";
+        $this->db->query($query);
+        $this->db->bind('username', $data['username']);
         $this->db->execute();
 
         return $this->db->rowCount();

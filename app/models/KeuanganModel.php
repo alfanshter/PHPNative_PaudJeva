@@ -26,6 +26,14 @@ class KeuanganModel
         return $this->db->single();
     }
 
+
+    public function getUangSiswa($nik_keuangan)
+    {
+        $query = "SELECT * FROM tb_keuangan k JOIN tb_siswa s ON k.nik_keuangan = s.nik WHERE nik_keuangan = $nik_keuangan ORDER BY k.tanggal_bayar DESC";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
     public function tambahKeuangan($data)
     {
         $query = "INSERT INTO tb_keuangan (nik_keuangan,periode,jenis_tagihan,nominal,status_bayar,tanggal_bayar)

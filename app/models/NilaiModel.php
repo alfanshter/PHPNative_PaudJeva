@@ -26,6 +26,13 @@ class NilaiModel
         return $this->db->single();
     }
 
+    public function getNilaisiswa($nik_siswa)
+    {
+        $query = "SELECT * FROM tb_siswa s JOIN tb_nilai n ON s.nik = n.nik_siswa  WHERE nik_siswa = $nik_siswa ORDER BY n.tanggal_nilai DESC";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
     public function updateNilai($data)
     {
 

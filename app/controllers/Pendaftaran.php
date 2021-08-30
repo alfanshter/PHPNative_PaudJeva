@@ -18,7 +18,7 @@ class Pendaftaran extends Controller
         if ($this->model('SiswaModel')->tambahSiswa($_POST) > 0) {
             if ($this->model('AyahModel')->tambahAyah($_POST) > 0) {
                 if ($this->model('IbuModel')->tambahIbu($_POST) > 0) {
-                    Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
+                    Flasher::setMessage('Berhasil', 'didaftarkan', 'success');
                     header('location: ' . base_url . '/pendaftaran');
                 }
             }

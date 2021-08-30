@@ -18,6 +18,14 @@ class AbsenModel
         return $this->db->resultSet();
     }
 
+    public function getAbsenSiswa($nik_absen)
+    {
+        $query = "SELECT * FROM tb_absen a JOIN tb_siswa s ON a.nik_absen = s.nik   WHERE nik_absen = $nik_absen ORDER BY a.tanggal_absen DESC";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+
 
     public function getAbsenDetail($id_absen)
     {

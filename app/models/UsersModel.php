@@ -26,4 +26,19 @@ class UsersModel
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+    public function setPassword($data)
+    {
+        $query = "UPDATE users  
+        SET
+         password=:password,
+         role = 2
+            WHERE username = :username";
+        $this->db->query($query);
+        $this->db->bind('password', $data['password']);
+        $this->db->bind('username', $data['username']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
