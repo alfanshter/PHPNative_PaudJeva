@@ -110,7 +110,7 @@ if (!empty($_SESSION['role'])) {
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link" href="<?= base_url; ?>/login">
+                            <a class="nav-link" href="<?= base_url; ?>/dataguru">
                                 <p>Data Guru</p>
                             </a>
                         </li>

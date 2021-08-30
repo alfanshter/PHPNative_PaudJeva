@@ -5,7 +5,7 @@ class Datasiswa extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Data Siswa';
-        $data['datasiswa_all'] = $this->model('SiswaModel')->getdataallsiswa();
+        $data['datasiswa_all'] = $this->model('SiswaModel')->getallGuru();
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('dashboard/datasiswa', $data);
