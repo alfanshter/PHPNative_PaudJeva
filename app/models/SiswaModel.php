@@ -24,6 +24,13 @@ class SiswaModel
         return $this->db->resultSet();
     }
 
+    public function getSiswaPendaftaran()
+    {
+        $query = "SELECT * FROM tb_siswa WHERE status = 0";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
     public function getdatasiswa($id_siswa)
     {
         $query = "SELECT * FROM tb_siswa s JOIN tb_ayah a ON s.nik_ayah=a.nik_ayah JOIN tb_ibu i ON s.nik_ibu=i.nik_ibu WHERE s.id_siswa = $id_siswa";
@@ -92,7 +99,7 @@ class SiswaModel
 
     public function hapussiswa($data)
     {
-        $query = "DELETE tb_siswa, users FROM tb_siswa INNER JOIN users ON tb_siswa.id_siswa = users.kode_siswa WHERE id_siswa = :id_siswa";
+        $query = "DELETE tb_siswa, users FROM tb_siswa INNER JOIN users ON tb_siswa.nik = users.kode_siswa WHERE id_siswa = :id_siswa";
         $this->db->query($query);
         $this->db->bind('id_siswa', $data['id_siswa']);
         $this->db->execute();
@@ -107,5 +114,69 @@ class SiswaModel
         $this->db->query($query);
         $this->db->bind('key', "%$key%");
         return $this->db->resultSet();
+    }
+
+    public function cariSiswadaftar()
+    {
+        $key = $_POST['key'];
+        $query = "SELECT * FROM tb_siswa WHERE status = 0 AND nama LIKE :key";
+        $this->db->query($query);
+        $this->db->bind('key', "%$key%");
+        return $this->db->resultSet();
+    }
+
+    public function hapussiswaDaftar($data)
+    {
+        $query = "DELETE tb_siswa FROM tb_siswa  WHERE id_siswa = :id_siswa AND status = 0";
+        $this->db->query($query);
+        $this->db->bind('id_siswa', $data['id_siswa']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function aktifasiSiswa($data)
+    {
+        $query = "UPDATE tb_siswa s JOIN tb_ayah a ON s.nik_ayah = a.nik_ayah JOIN tb_ibu i ON s.nik_ibu = i.nik_ibu 
+        SET
+         s.nama=:nama,
+         s.status = 2, 
+         s.nik =:nik, 
+         s.tempat_lahir =:tempat_lahir,
+          s.ttl = :ttl, 
+          s.jk =:jk, 
+          s.agama =:agama,
+           s.alamat =:alamat, 
+           a.nama_ayah=:nama_ayah , 
+           i.nama_ibu =:nama_ibu, 
+           s.nomor_telepon = :nomor_telepon
+            WHERE s.id_siswa = :id_siswa";
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('nik', $data['nik']);
+        $this->db->bind('tempat_lahir', $data['tempat_lahir']);
+        $this->db->bind('ttl', $data['ttl']);
+        $this->db->bind('jk', $data['jk']);
+        $this->db->bind('agama', $data['agama']);
+        $this->db->bind('alamat', $data['alamat']);
+        $this->db->bind('nama_ayah', $data['nama_ayah']);
+        $this->db->bind('nama_ibu', $data['nama_ibu']);
+        $this->db->bind('nomor_telepon', $data['nomor_telepon']);
+        $this->db->bind('id_siswa', $data['id_siswa']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function registerAkun($data)
+    {
+        $nik = $data['nik'];
+
+        $query = "INSERT INTO users (username,role,kode_siswa)
+        VALUES($nik,10,$nik)";
+        $this->db->query($query);
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 }
