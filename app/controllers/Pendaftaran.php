@@ -15,7 +15,7 @@ class Pendaftaran extends Controller
     //mulai pendaftaran siswa
     public function daftarsiswa()
     {
-        if ($this->model('SiswaModel')->tambahSiswa($_POST) > 0) {
+        if ($this->model('SiswaModel')->tambahSiswa($_POST, $_FILES) > 0) {
             if ($this->model('AyahModel')->tambahAyah($_POST) > 0) {
                 if ($this->model('IbuModel')->tambahIbu($_POST) > 0) {
                     Flasher::setMessage('Berhasil', 'didaftarkan', 'success');

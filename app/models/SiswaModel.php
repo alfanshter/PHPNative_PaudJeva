@@ -45,29 +45,59 @@ class SiswaModel
         return $this->db->single();
     }
 
-    public function tambahSiswa($data)
+    public function tambahSiswa($data, $foto)
     {
-        $query = "INSERT INTO tb_siswa (nama,nik_ayah,nik_ibu,ttl,tempat_lahir,jk,nik,alamat,agama,jenis_tinggal,alat_transportasi,nomor_telepon,status_dalam_keluarga,penerima_kps,no_kps)
-         VALUES(:nama,:nik_ayah,:nik_ibu,:ttl,:tempat_lahir,:jk,:nik,:alamat,:agama,:jenis_tinggal,:alat_transportasi,:nomor_telepon,:status_dalam_keluarga,:penerima_kps,:no_kps)";
-        $this->db->query($query);
-        $this->db->bind('nama', $data['nama']);
-        $this->db->bind('nik_ayah', $data['nik_ayah']);
-        $this->db->bind('nik_ibu', $data['nik_ibu']);
-        $this->db->bind('ttl', $data['ttl']);
-        $this->db->bind('tempat_lahir', $data['tempat_lahir']);
-        $this->db->bind('jk', $data['jk']);
-        $this->db->bind('nik', $data['nik']);
-        $this->db->bind('alamat', $data['alamat']);
-        $this->db->bind('agama', $data['agama']);
-        $this->db->bind('jenis_tinggal', $data['jenis_tinggal']);
-        $this->db->bind('alat_transportasi', $data['alat_transportasi']);
-        $this->db->bind('nomor_telepon', $data['nomor_telepon']);
-        $this->db->bind('status_dalam_keluarga', $data['status_dalam_keluarga']);
-        $this->db->bind('penerima_kps', $data['penerima_kps']);
-        $this->db->bind('no_kps', $data['no_kps']);
-        $this->db->execute();
+        $fotosiswa = $foto['foto']['name'];
+        $fotokk = $foto['foto_kk']['name'];
+        $fotoakte = $foto['foto_akte']['name'];
 
-        return $this->db->rowCount();
+        $tmpfotosiswa = $foto['foto']['tmp_name'];
+        $tmpfotokk = $foto['foto_kk']['tmp_name'];
+        $tmpfotoakte = $foto['foto_akte']['tmp_name'];
+
+        $fotosiswabaru = date('dmYHis') . $fotosiswa;
+        $fotokkbaru = date('dmYHis') . $fotokk;
+        $fotoaktebaru = date('dmYHis') . $fotoakte;
+        // Set path folder tempat menyimpan fotonya
+        $pathfotosiswa = "img/" . $fotosiswabaru;
+        $pathfotokk = "img/" . $fotokkbaru;
+        $pathfotoakte = "img/" . $fotoaktebaru;
+
+        if (move_uploaded_file($tmpfotosiswa, $pathfotosiswa)) {
+            if (move_uploaded_file($tmpfotokk, $pathfotokk)) {
+                if (move_uploaded_file($tmpfotoakte, $pathfotoakte)) {
+                    $query = "INSERT INTO tb_siswa (nama,nik_ayah,nik_ibu,ttl,tempat_lahir,jk,nik,alamat,agama,jenis_tinggal,alat_transportasi,nomor_telepon,status_dalam_keluarga,penerima_kps,no_kps,foto,foto_kk,foto_akte)
+                    VALUES(:nama,:nik_ayah,:nik_ibu,:ttl,:tempat_lahir,:jk,:nik,:alamat,:agama,:jenis_tinggal,:alat_transportasi,:nomor_telepon,:status_dalam_keluarga,:penerima_kps,:no_kps,:foto,:foto_kk,:foto_akte)";
+                    $this->db->query($query);
+                    $this->db->bind('nama', $data['nama']);
+                    $this->db->bind('nik_ayah', $data['nik_ayah']);
+                    $this->db->bind('nik_ibu', $data['nik_ibu']);
+                    $this->db->bind('ttl', $data['ttl']);
+                    $this->db->bind('tempat_lahir', $data['tempat_lahir']);
+                    $this->db->bind('jk', $data['jk']);
+                    $this->db->bind('nik', $data['nik']);
+                    $this->db->bind('alamat', $data['alamat']);
+                    $this->db->bind('agama', $data['agama']);
+                    $this->db->bind('jenis_tinggal', $data['jenis_tinggal']);
+                    $this->db->bind('alat_transportasi', $data['alat_transportasi']);
+                    $this->db->bind('nomor_telepon', $data['nomor_telepon']);
+                    $this->db->bind('status_dalam_keluarga', $data['status_dalam_keluarga']);
+                    $this->db->bind('penerima_kps', $data['penerima_kps']);
+                    $this->db->bind('no_kps', $data['no_kps']);
+                    $this->db->bind('foto', $fotosiswabaru);
+                    $this->db->bind('foto_kk', $fotokkbaru);
+                    $this->db->bind('foto_akte', $fotoaktebaru);
+                    $this->db->execute();
+                    return $this->db->rowCount();
+                } else {
+                    var_dump('gagal upload 3');
+                }
+            } else {
+                var_dump('gagal upload 2');
+            }
+        } else {
+            var_dump('gagal upload 1');
+        }
     }
 
     public function updateSiswa($data)

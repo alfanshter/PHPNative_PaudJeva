@@ -78,8 +78,24 @@
 
                                 <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Nomor KPS</span>
-                                    <input type="text" id="no_kps" name="no_kps" lass="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <input type="text" id="no_kps" name="no_kps" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                 </div>
+
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Foto </span>
+                                    <input type="file" id="foto" name="foto">
+                                </div>
+
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Foto KK</span>
+                                    <input type="file" id="foto_kk" name="foto_kk">
+                                </div>
+
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Foto Akte</span>
+                                    <input type="file" id="foto_akte" name="foto_akte">
+                                </div>
+
 
                                 <h3 align="end"><b>Data Ayah</b> </h3>
                                 <div class="input-group input-group-sm mb-3">
@@ -189,6 +205,11 @@
                 autoclose: true,
                 todayHighlight: true,
             });
+        });
+
+        $(document).on("click", "#pilih_gambar", function() {
+            var file = $(this).parents().find(".file");
+            file.trigger("click");
         });
     </script>
 </div>

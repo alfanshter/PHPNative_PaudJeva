@@ -20,6 +20,9 @@ class Aktifasi extends Controller
                 Flasher::setMessage('Gagal', 'diaktifkan', 'success');
                 header('location: ' . base_url . '/home');
             }
+        } else {
+            Flasher::setMessage('Gagal', 'diaktifkan', 'danger');
+            header('location: ' . base_url . '/home');
         }
     }
 }

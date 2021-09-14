@@ -7,13 +7,13 @@
     }
 </style>
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url(<?= base_url; ?>/img/dashboard.jpg);   height: 100%;    background-position: center;    background-repeat: no-repeat;    background-size: cover;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 ml-auto">
-                    <h2><?= $data['title']; ?></h2>
+                    <h2 ss><?= $data['title']; ?></h2>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

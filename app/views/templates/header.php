@@ -37,7 +37,8 @@ if (!empty($_SESSION['role'])) {
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?= base_url; ?>/assets/demo/demo.css'" rel="stylesheet" />
 
-    <script src="<?= base_url; ?>/assets/js/jquery.min.js'"></script>
+    <script src="<?= base_url; ?>/assets/js/jquery.min.js"></script>
+    <script src="<?= base_url; ?>/assets/js/jquery-3.4.1.js"></script>
 
     <style type="text/css">
 
