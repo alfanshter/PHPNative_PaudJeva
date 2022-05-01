@@ -1,5 +1,5 @@
 <?php
-$id_siswa = 0;
+$id = 0;
 ?>
 <div class="content mt-5">
     <div class="container-fluid">
@@ -65,6 +65,7 @@ $id_siswa = 0;
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Tanggal Pendaftaran</th>
+                                            <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
@@ -75,7 +76,7 @@ $id_siswa = 0;
 
                                         foreach ($data['datasiswa_all'] as $siswa) : ?>
                                             <form action="<?= base_url; ?>/datapendaftaran/deletesiswa" method="POST">
-                                                <input type="hidden" value="<?= $siswa['id_siswa']; ?>" name="id_siswa">
+                                                <input type="hidden" value="<?= $siswa['id']; ?>" name="id">
                                                 <tr>
                                                     <th scope="row"><?= $i; ?></th>
                                                     <td><?php echo $siswa['nama'] ?></td>
@@ -84,20 +85,41 @@ $id_siswa = 0;
                                                         echo $newDate;
                                                         ?></td>
                                                     <td>
+                                                        <?php
+                                                        if ($siswa['status'] == 0) {
+                                                        ?>
+                                                            <p>Belum Di aktifasi</p>
 
-                                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/datapendaftaran/detail/<?= $siswa['id_siswa']; ?>" class="btn btn-warning "><span style="color: white" class="material-icons">
-                                                                    remove_red_eye
-                                                                </span></a>
+                                                        <?php } else { ?>
+                                                            <p>Sudah di aktifasi</p>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($siswa['status'] == 0) {
+                                                        ?>
+                                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                                                <a href="<?= base_url; ?>/datapendaftaran/detail/<?= $siswa['id']; ?>" class="btn btn-warning "><span style="color: white" class="material-icons">
+                                                                        remove_red_eye
+                                                                    </span></a>
 
-                                                            <a href="<?= base_url; ?>/datapendaftaran/detail_aktifasi/<?= $siswa['id_siswa']; ?>" class="btn btn-success "><span style="color: white" class="material-icons">
-                                                                    check
-                                                                </span></a>
+                                                                <a href="<?= base_url; ?>/datapendaftaran/detail_aktifasi/<?= $siswa['id']; ?>" class="btn btn-success "><span style="color: white" class="material-icons">
+                                                                        check
+                                                                    </span></a>
 
-                                                            <button onclick="return confirm('Apakah anda yakin akan menghapus?')" type="submit" class="btn btn-danger"><span style="color: white" class="material-icons">
-                                                                    delete
-                                                                </span></button>
-                                                        </div>
+                                                                <button onclick="return confirm('Apakah anda yakin akan menghapus?')" type="submit" class="btn btn-danger"><span style="color: white" class="material-icons">
+                                                                        delete
+                                                                    </span></button>
+                                                            </div>
+
+                                                        <?php } else { ?>
+                                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                                                <a href="<?= base_url; ?>/datapendaftaran/detail/<?= $siswa['id']; ?>" class="btn btn-warning "><span style="color: white" class="material-icons">
+                                                                        remove_red_eye
+                                                                    </span></a>
+
+                                                            </div>
+                                                        <?php } ?>
                                                     </td>
 
                                                 </tr>
@@ -135,6 +157,12 @@ $id_siswa = 0;
                         <span class="input-group-text" id="inputGroup-sizing-sm">Nama</span>
                         <input required type="text" id="nama" name="nama" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+                        <input required type="text" id="username" name="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Masukkan Username Siswa">
+                    </div>
+                    <p style="font-weight: bold;font-size: 9pt;"> *Username digunakan untuk login siswa.</p>
+
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Tempat/tanggal lahir</span>
                         <input required type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
@@ -183,6 +211,22 @@ $id_siswa = 0;
                         <span class="input-group-text" id="inputGroup-sizing-sm">Status Dalam Keluarga</span>
                         <input required type="text" id="status_dalam_keluarga" name="status_dalam_keluarga" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Foto </span>
+                        <input type="file" id="foto" name="foto">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Foto KK</span>
+                        <input type="file" id="foto_kk" name="foto_kk">
+                    </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Foto Akte</span>
+                        <input type="file" id="foto_akte" name="foto_akte">
+                    </div>
+
+
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Apakah siswa penerima KPS ?</span>
                         <select class="form-select" aria-label="Default select example" id="penerima_kps" name="penerima_kps">
@@ -302,6 +346,7 @@ $id_siswa = 0;
                         <span class="input-group-text" id="inputGroup-sizing-sm">Nama</span>
                         <input required type="text" id="nama" name="nama" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
+
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Tempat/tanggal lahir</span>
                         <input required type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">

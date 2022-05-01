@@ -2,11 +2,11 @@
 
 class DetailNilaiSiswa extends Controller
 {
-    public function index($id_siswa)
+    public function index($id)
     {
 
         $data['title'] = 'Halaman Detail Nilai Siswa';
-        $data['detailnilai'] = $this->model('NilaiModel')->getNilaiDetail($id_siswa);
+        $data['detailnilai'] = $this->model('NilaiModel')->getNilaiDetail($id);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('dashboard/detail_nilai_siswa', $data);

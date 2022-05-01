@@ -4,12 +4,14 @@ class Admin extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Halaman Admin';
-        $data['admin'] = $this->model('UsersModel')->getAdmin();
-        $this->view('templates/header', $data);
-        $this->view('templates/sidebar', $data);
-        $this->view('admin/index', $data);
-        $this->view('templates/footer', $data);
+        if ($_SESSION['role'] == 0) {
+            $data['title'] = 'Halaman Admin';
+            return $this->view('admin/admin');
+        }
+        Flasher::setMessage('Gagal', 'akses', 'danger');
+        header('location: ' . base_url . '/home');
+
+
     }
 
     public function deletesiswa()

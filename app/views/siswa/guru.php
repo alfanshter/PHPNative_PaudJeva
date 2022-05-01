@@ -1,5 +1,5 @@
 <?php
-$id_siswa = 0;
+$id = 0;
 ?>
 <div class="content mt-5">
     <div class="container-fluid">
@@ -24,6 +24,7 @@ $id_siswa = 0;
                                             <th scope="col">No</th>
                                             <th scope="col">Lembaga</th>
                                             <th scope="col">Nama</th>
+                                            <th scope="col">foto</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,6 +39,7 @@ $id_siswa = 0;
                                                     <th scope="row"><?= $i; ?></th>
                                                     <td><?php echo $guru['nama_lembaga'] ?></td>
                                                     <td><?php echo $guru['nama_guru'] ?></td>
+                                                    <td><img src="<?= base_url; ?>/img/<?= $guru['foto_guru']; ?>" alt="" width="200" height="200"></td>
 
                                                 </tr>
 

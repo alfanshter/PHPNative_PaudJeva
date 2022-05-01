@@ -13,18 +13,19 @@ class Login extends Controller
     {
         if ($row = $this->model('UsersModel')->checklogin($_POST)) {
             $role = $row['role'];
-            if ($role == "1") {
+            if ($role == "0") {
                 $_SESSION['role'] = $row['role'];
-                $_SESSION['id_siswa'] = $row['kode_siswa'];
+                $_SESSION['id'] = $row['id'];
                 header('location:' . base_url . '/admin');
-            } else if ($role == "2") {
+            } else if ($role == "1") {
                 $_SESSION['role'] = $row['role'];
-                $_SESSION['id_siswa'] = $row['kode_siswa'];
-                header('location:' . base_url . '/siswa');
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['nama'] = $row['nama'];
+                header('location:' . base_url . '/user');
             }
         } else {
             Flasher::setMessage('Gagal', 'Login', 'danger');
-            header('location: ' . base_url . '/login');
+            header('location: ' . base_url . '/home');
         }
     }
 
@@ -32,8 +33,9 @@ class Login extends Controller
     {
         session_start();
         session_destroy();
-        header('location:' . base_url . '/admin');
+        header('location:' . base_url . '/home');
     }
+
 
     //mulai pendaftaran siswa
 }

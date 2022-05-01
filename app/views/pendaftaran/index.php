@@ -21,6 +21,13 @@
                                     <input required type="text" id="nama" name="nama" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                 </div>
                                 <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+                                    <input required type="text" id="username" name="username" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Masukkan Username Siswa">
+                                </div>
+                                <p style="font-weight: bold;font-size: 9pt;"> *Dengan Mengirim, berarti menyetujui untuk mengikuti segala ketentuan dan tata tertib
+                                    yang sudah di berlakukan oleh Paud Assbiyan.</p>
+
+                                <div class="input-group input-group-sm mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Tempat/tanggal lahir</span>
                                     <input required type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                     <input type="date" id="ttl" name="ttl">

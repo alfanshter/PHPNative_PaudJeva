@@ -13,14 +13,15 @@ class AbsenModel
 
     public function getAbsen()
     {
-        $query = "SELECT * FROM tb_absen a JOIN tb_siswa s ON a.nik_absen = s.nik ORDER BY a.tanggal_absen DESC";
+        $query = "SELECT a.*, b.nama FROM absen_siswas a JOIN users b ON a.user_id = b.id ORDER BY a.tanggal DESC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
 
-    public function getAbsenSiswa($nik_absen)
+    public function getAbsenSiswa()
     {
-        $query = "SELECT * FROM tb_absen a JOIN tb_siswa s ON a.nik_absen = s.nik   WHERE nik_absen = $nik_absen ORDER BY a.tanggal_absen DESC";
+        $id = $_SESSION["id"];
+        $query = "SELECT * FROM absen_siswas a JOIN users u ON a.user_id = u.id   WHERE a.user_id = $id ORDER BY a.tanggal DESC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
@@ -34,42 +35,46 @@ class AbsenModel
         return $this->db->single();
     }
 
-    public function tambahAbsen($data)
+    public function insert($data)
     {
-        $query = "INSERT INTO tb_absen (nik_absen,tanggal_absen,kehadiran,keterangan)
-         VALUES(:nik_absen,:tanggal_absen,:kehadiran,:keterangan)";
+
+        $query = "INSERT INTO absen_siswas (user_id,tanggal,kelas,absen,keterangan)
+         VALUES(:user_id,:tanggal,:kelas,:absen,:keterangan)";
         $this->db->query($query);
-        $this->db->bind('nik_absen', $data['nik_absen']);
-        $this->db->bind('tanggal_absen', $data['tanggal_absen']);
-        $this->db->bind('kehadiran', $data['kehadiran']);
+        $this->db->bind('user_id', $data['user_id']);
+        $this->db->bind('tanggal', $data['tanggal']);
+        $this->db->bind('kelas', $data['kelas']);
+        $this->db->bind('absen', $data['absen']);
         $this->db->bind('keterangan', $data['keterangan']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function updateAbsen($data)
+    public function update($data)
     {
-        $query = "UPDATE tb_absen  
+        $query = "UPDATE absen_siswas  
         SET
-            tanggal_absen = :tanggal_absen, 
-            kehadiran =:kehadiran,
+            tanggal = :tanggal, 
+            kelas =:kelas,
+            absen = :absen,
             keterangan = :keterangan
-        WHERE id_absen = :id_absen";
+        WHERE id = :id";
 
         $this->db->query($query);
-        $this->db->bind('tanggal_absen', $data['tanggal_absen']);
-        $this->db->bind('kehadiran', $data['kehadiran']);
+        $this->db->bind('tanggal', $data['tanggal']);
+        $this->db->bind('kelas', $data['kelas']);
+        $this->db->bind('absen', $data['absen']);
         $this->db->bind('keterangan', $data['keterangan']);
-        $this->db->bind('id_absen', $data['id_absen']);
+        $this->db->bind('id', $data['id']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function hapusAbsen($data)
+    public function delete($data)
     {
-        $query = "DELETE FROM tb_absen WHERE id_absen = $data";
+        $query = "DELETE FROM absen_siswas WHERE id = $data";
         $this->db->query($query);
         $this->db->execute();
 

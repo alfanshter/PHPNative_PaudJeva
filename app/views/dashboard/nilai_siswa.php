@@ -62,6 +62,8 @@ $id_jadwal = 0;
                                             <th scope="col">Berdoa</th>
                                             <th scope="col">Pijakan Sebelum Bermain</th>
                                             <th scope="col">Pijakan Setelah Bermain</th>
+                                            <th scope="col">Rata - Rata</th>
+                                            <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
 
@@ -82,6 +84,21 @@ $id_jadwal = 0;
                                                     <td><?php echo $nilai['berdoa'] ?></td>
                                                     <td><?php echo $nilai['pijakan_sebelum_bermain'] ?></td>
                                                     <td><?php echo $nilai['pijakan_setelah_bermain'] ?></td>
+                                                    <td><?php $jumlah = $nilai['bermain'] + $nilai['ikrar_bersama'] + $nilai['senam_irama'] + $nilai['bernyanyi'] + $nilai['berdoa'] + $nilai['pijakan_sebelum_bermain'] + $nilai['pijakan_setelah_bermain'];
+                                                        $rata2 = $jumlah / 7;
+                                                        echo number_format($rata2, 1);
+                                                        ?></td>
+                                                    <td><?php
+                                                        if ($rata2 >= 85) {
+                                                            echo 'Sangat Baik';
+                                                        } else if ($rata2 >= 75) {
+                                                            echo 'Baik';
+                                                        } else if ($rata2 >= 60) {
+                                                            echo 'Cukup';
+                                                        } else {
+                                                            echo 'Kurang';
+                                                        }
+                                                        ?></td>
 
                                                     <td>
 
@@ -171,10 +188,17 @@ $id_jadwal = 0;
                         <input required type="number" id="pijakan_setelah_bermain" name="pijakan_setelah_bermain" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
 
+
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Tanggal Nilai</span>
                         <input type="date" id="tanggal_nilai" name="tanggal_nilai">
                     </div>
+
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Komentar Nilai</span>
+                        <textarea required id="komentar_nilai" name="komentar_nilai" rows="4" cols="50"></textarea>
+                    </div>
+
 
 
 

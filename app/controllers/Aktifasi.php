@@ -12,16 +12,11 @@ class Aktifasi extends Controller
     //mulai aktifasi siswa
     public function aktifasiSiswa()
     {
-        if ($this->model('SiswaModel')->setstatus($_POST) > 0) {
-            if ($this->model('UsersModel')->setPassword($_POST) > 0) {
-                Flasher::setMessage('Berhasil', 'diaktifkan', 'success');
-                header('location: ' . base_url . '/home');
-            } else {
-                Flasher::setMessage('Gagal', 'diaktifkan', 'success');
-                header('location: ' . base_url . '/home');
-            }
+        if ($this->model('UsersModel')->setPassword($_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'diaktifkan', 'success');
+            header('location: ' . base_url . '/home');
         } else {
-            Flasher::setMessage('Gagal', 'diaktifkan', 'danger');
+            Flasher::setMessage('Gagal', 'diaktifkan', 'success');
             header('location: ' . base_url . '/home');
         }
     }

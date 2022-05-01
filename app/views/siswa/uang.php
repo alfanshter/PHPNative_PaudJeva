@@ -7,7 +7,7 @@ $id_jadwal = 0;
             <div class="col">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Data Siswa</h4>
+                        <h4 class="card-title">Keuangan Siswa</h4>
                         <p class="card-category">Selamat Datang</p>
                     </div>
                     <div class="card-body">

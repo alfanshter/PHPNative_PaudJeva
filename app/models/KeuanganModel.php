@@ -11,12 +11,72 @@ class KeuanganModel
         $this->db = new Database;
     }
 
-    public function getKeuangan()
+    // SELECT * FROM keuangan_siswas WHERE YEAR(tanggal) = 2022 AND MONTH(tanggal) = 4
+    public function index()
     {
-        $query = "SELECT * FROM tb_keuangan k JOIN tb_siswa s ON k.nik_keuangan = s.nik ORDER BY k.tanggal_bayar DESC";
+        $query = "SELECT  k.* , monthname(k.tanggal) as bulan ,u.nama
+         FROM keuangan_siswas k 
+         JOIN biodata_siswas b ON k.biodata_siswa_id = b.id 
+         JOIN users u ON b.user_id = u.id 
+         ORDER BY k.tanggal DESC";
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+    public function cariSiswa()
+    {
+        $cari = $_POST['cari'];
+        
+        $query = "SELECT  k.* , monthname(k.tanggal) as bulan ,u.nama
+         FROM keuangan_siswas k 
+         JOIN biodata_siswas b ON k.biodata_siswa_id = b.id 
+         JOIN users u ON b.user_id = u.id 
+         WHERE u.nama LIKE :cari
+         ORDER BY k.tanggal DESC";
+    
+        $this->db->query($query);
+        $this->db->bind('cari', "%$cari%");
+        return $this->db->resultSet();
+    }
+
+    public function cariBulan()
+    {
+        $kelas = $_POST['kelas'];
+        $bulan = $_POST['bulan'];
+        $tahun = $_POST['tahun'];
+        
+        $query = "SELECT  k.* , monthname(k.tanggal) as bulan ,u.nama
+         FROM keuangan_siswas k 
+         JOIN biodata_siswas b ON k.biodata_siswa_id = b.id 
+         JOIN users u ON b.user_id = u.id 
+         WHERE k.kelas LIKE :kelas AND  monthname(k.tanggal) LIKE :bulan AND year(k.tanggal) LIKE :tahun
+         ORDER BY k.tanggal DESC";
+    
+        $this->db->query($query);
+        $this->db->bind('kelas', "%$kelas%");
+        $this->db->bind('bulan', "%$bulan%");
+        $this->db->bind('tahun', "%$tahun%");
+        return $this->db->resultSet();
+    }
+
+    public function sumbiaya()
+    {
+        $kelas = $_POST['kelas'];
+        $bulan = $_POST['bulan'];
+        $tahun = $_POST['tahun'];
+        
+        $query = "SELECT  sum(biaya) as total
+         FROM keuangan_siswas 
+         WHERE kelas LIKE :kelas AND  monthname(tanggal) LIKE :bulan AND year(tanggal) LIKE :tahun";
+    
+        $this->db->query($query);
+        $this->db->bind('kelas', "%$kelas%");
+        $this->db->bind('bulan', "%$bulan%");
+        $this->db->bind('tahun', "%$tahun%");
+        return $this->db->single();
+        
+    }
+
 
 
     public function getKeuanganDetail($id_keuangan)
@@ -27,55 +87,64 @@ class KeuanganModel
     }
 
 
-    public function getUangSiswa($nik_keuangan)
+    public function getUangSiswa()
     {
-        $query = "SELECT * FROM tb_keuangan k JOIN tb_siswa s ON k.nik_keuangan = s.nik WHERE nik_keuangan = $nik_keuangan ORDER BY k.tanggal_bayar DESC";
-        $this->db->query($query);
+        $id = $_SESSION["id"];
+        $query = "SELECT  k.* , monthname(k.tanggal) as bulan ,u.nama
+        FROM keuangan_siswas k 
+        JOIN biodata_siswas b ON k.biodata_siswa_id = b.id 
+        JOIN users u ON b.user_id = u.id 
+        where u.id = $id
+        ORDER BY k.tanggal DESC";
+       $this->db->query($query);
         return $this->db->resultSet();
     }
 
-    public function tambahKeuangan($data)
+    public function insert($data)
     {
-        $query = "INSERT INTO tb_keuangan (nik_keuangan,periode,jenis_tagihan,nominal,status_bayar,tanggal_bayar)
-         VALUES(:nik_keuangan,:periode,:jenis_tagihan,:nominal,:status_bayar,:tanggal_bayar)";
+        $query = "INSERT INTO keuangan_siswas (biodata_siswa_id,kelas,periode,jenis_surat,biaya,status,tanggal)
+         VALUES(:biodata_siswa_id,:kelas,:periode,:jenis_surat,:biaya,:status,:tanggal)";
         $this->db->query($query);
-        $this->db->bind('nik_keuangan', $data['nik_keuangan']);
+        $this->db->bind('biodata_siswa_id', $data['biodata_siswa_id']);
+        $this->db->bind('kelas', $data['kelas']);
         $this->db->bind('periode', $data['periode']);
-        $this->db->bind('jenis_tagihan', $data['jenis_tagihan']);
-        $this->db->bind('nominal', $data['nominal']);
-        $this->db->bind('status_bayar', $data['status_bayar']);
-        $this->db->bind('tanggal_bayar', $data['tanggal_bayar']);
+        $this->db->bind('jenis_surat', $data['jenis_surat']);
+        $this->db->bind('biaya', $data['biaya']);
+        $this->db->bind('status', $data['status']);
+        $this->db->bind('tanggal', $data['tanggal']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function updateKeuangan($data)
+    public function update($data)
     {
-        $query = "UPDATE tb_keuangan  
+        $query = "UPDATE keuangan_siswas  
         SET
-            periode = :periode, 
-            jenis_tagihan =:jenis_tagihan,
-            nominal = :nominal, 
-            status_bayar =:status_bayar, 
-            tanggal_bayar =:tanggal_bayar
-        WHERE id_keuangan = :id_keuangan";
+        kelas = :kelas, 
+        periode =:periode,
+        jenis_surat = :jenis_surat, 
+        biaya =:biaya, 
+        status =:status,
+        tanggal =:tanggal
+        WHERE id = :id";
 
         $this->db->query($query);
+        $this->db->bind('kelas', $data['kelas']);
         $this->db->bind('periode', $data['periode']);
-        $this->db->bind('jenis_tagihan', $data['jenis_tagihan']);
-        $this->db->bind('nominal', $data['nominal']);
-        $this->db->bind('status_bayar', $data['status_bayar']);
-        $this->db->bind('tanggal_bayar', $data['tanggal_bayar']);
-        $this->db->bind('id_keuangan', $data['id_keuangan']);
+        $this->db->bind('jenis_surat', $data['jenis_surat']);
+        $this->db->bind('biaya', $data['biaya']);
+        $this->db->bind('status', $data['status']);
+        $this->db->bind('tanggal', $data['tanggal']);
+        $this->db->bind('id', $data['id']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function hapusKeuangan($data)
+    public function delete($data)
     {
-        $query = "DELETE FROM tb_keuangan WHERE id_keuangan = $data";
+        $query = "DELETE FROM keuangan_siswas WHERE id = $data";
         $this->db->query($query);
         $this->db->execute();
 

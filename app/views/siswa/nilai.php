@@ -7,38 +7,12 @@ $id_jadwal = 0;
             <div class="col">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title">Data Siswa</h4>
+                        <h4 class="card-title">Nilai Siswa</h4>
                         <p class="card-category">Selamat Datang</p>
                     </div>
                     <div class="card-body">
                         <div class="container">
-                            <!-- @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b>{{$message}}</span>
-                            </div>
-                            @endif
-                            @if ($message = Session::get('gagal'))
-                            <div class="alert alert-warning">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="material-icons">close</i>
-                                </button>
-                                <span>
-                                    <b>{{$message}}</span>
-                            </div>
-                            @endif
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif -->
+
                             <div class="row">
                                 <?php
                                 Flasher::Message();
@@ -57,6 +31,8 @@ $id_jadwal = 0;
                                             <th scope="col">Berdoa</th>
                                             <th scope="col">Pijakan Sebelum Bermain</th>
                                             <th scope="col">Pijakan Setelah Bermain</th>
+                                            <th scope="col">Rata - Rata</th>
+                                            <th scope="col">Status</th>
                                         </tr>
 
                                     </thead>
@@ -76,6 +52,23 @@ $id_jadwal = 0;
                                                     <td style="text-align: center;"><?php echo $nilai['berdoa'] ?></td>
                                                     <td style="text-align: center;"><?php echo $nilai['pijakan_sebelum_bermain'] ?></td>
                                                     <td style="text-align: center;"><?php echo $nilai['pijakan_setelah_bermain'] ?></td>
+                                                    <td><?php $jumlah = $nilai['bermain'] + $nilai['ikrar_bersama'] + $nilai['senam_irama'] + $nilai['bernyanyi'] + $nilai['berdoa'] + $nilai['pijakan_sebelum_bermain'] + $nilai['pijakan_setelah_bermain'];
+                                                        $rata2 = $jumlah / 7;
+                                                        echo number_format($rata2, 1);
+                                                        ?></td>
+                                                    <td><?php
+                                                        if ($rata2 >= 85) {
+                                                            echo 'Sangat Baik';
+                                                        } else if ($rata2 >= 75) {
+                                                            echo 'Baik';
+                                                        } else if ($rata2 >= 60) {
+                                                            echo 'Cukup';
+                                                        } else {
+                                                            echo 'Kurang';
+                                                        }
+                                                        ?></td>
+
+                                                    <td>
 
                                                 </tr>
 
@@ -93,6 +86,56 @@ $id_jadwal = 0;
                         </div>
                     </div>
                 </div>
+
+                <!-- kedua -->
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Komentar Nilai</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+
+                            <div class="row">
+                                <?php
+                                Flasher::Message();
+                                ?>
+                            </div>
+                            <div class="container">
+                                <table class="table table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tgl</th>
+                                            <th scope="col">Komentar Nilai</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+
+                                        foreach ($data['detailnilai'] as $nilai) : ?>
+                                            <form action="<?= base_url; ?>/nilaisiswa/deletenilai/<?= $nilai['id_nilai']; ?>" method="POST">
+                                                <tr>
+                                                    <th scope="row"><?php echo $nilai['tanggal_nilai'] ?></th>
+                                                    <td><?php echo $nilai['komentar_nilai'] ?></td>
+
+                                                </tr>
+
+                                            </form>
+                                        <?php
+                                        endforeach; ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr class="mt-2">
+                            <div class="d-flex justify-content-center">
+                                <!-- {{ $data->links('vendor.pagination.simple-tailwind') }} -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
     }
 </style>
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" style="background-image: url(<?= base_url; ?>/img/dashboard.jpg);   height: 100%;    background-position: center;    background-repeat: no-repeat;    background-size: cover;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">

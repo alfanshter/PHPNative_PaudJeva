@@ -5,18 +5,38 @@ class NilaiSiswa extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Data Siswa';
-        $data['nilai'] = $this->model('NilaiModel')->getNilai();
-        $data['datasiswa_all'] = $this->model('SiswaModel')->getdataallsiswa();
-        $this->view('templates/header', $data);
-        $this->view('templates/sidebar', $data);
-        $this->view('dashboard/nilai_siswa', $data);
-        $this->view('templates/footer', $data);
+        if ($_SESSION["role"]==0) {
+            $data['nilai'] = $this->model('NilaiModel')->index();
+        }elseif ($_SESSION["role"]==1){
+            $data['nilai'] = $this->model('NilaiModel')->getNilaisiswa();
+            
+        }
+        
+        $data['siswa'] = $this->model('BiodataModel')->index();
+        $this->view('nilai/nilai', $data);
+    }
+    
+    public function carisiswa()
+    {
+        $data['title'] = 'Halaman Data Siswa';
+        $data['cari'] = $_POST['cari'];
+        $data['nilai'] = $this->model('NilaiModel')->cariNilai();
+        $this->view('nilai/nilai', $data);
     }
 
-    public function tambah_nilai()
+    public function carikelas()
+    {
+        $data['title'] = 'Halaman Data Siswa';
+        $data['cari'] = $_POST['cari'];
+        $data['tanggal'] = $_POST['tanggal'];
+        $data['nilai'] = $this->model('NilaiModel')->cariNilai_kelas();
+        $this->view('nilai/nilai', $data);
+    }
+
+    public function insert()
     {
 
-        if ($this->model('NilaiModel')->tambahNilai($_POST) > 0) {
+        if ($this->model('NilaiModel')->insert($_POST) > 0) {
             Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
             header('location: ' . base_url . '/nilaisiswa');
         } else {
@@ -25,15 +45,56 @@ class NilaiSiswa extends Controller
         }
     }
 
-    public function deletenilai($id_nilai)
+    public function update()
     {
 
-        if ($this->model('NilaiModel')->hapusNilai($id_nilai) > 0) {
-            Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
+        if ($this->model('NilaiModel')->update($_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'diupdate', 'success');
             header('location: ' . base_url . '/nilaisiswa');
         } else {
-            Flasher::setMessage('gagal', 'ditambahkan', 'danger');
+            Flasher::setMessage('gagal', 'diupdate', 'danger');
             header('location: ' . base_url . '/nilaisiswa');
         }
+    }
+    
+    public function editnilai($id)
+    {
+        $data['title'] = 'Halaman Edit Siswa';
+        $data['nilai'] = $this->model('NilaiModel')->detail($id);
+        $this->view('nilai/editnilai', $data);
+    }
+
+    public function delete($id)
+    {
+
+        if ($this->model('NilaiModel')->delete($id) > 0) {
+            Flasher::setMessage('Berhasil', 'dihapus', 'success');
+            header('location: ' . base_url . '/nilaisiswa');
+        } else {
+            Flasher::setMessage('gagal', 'dihapus', 'danger');
+            header('location: ' . base_url . '/nilaisiswa');
+        }
+    }
+
+    public function nilai_pdf()
+    {
+        $cari = $_POST['cari'];
+        $last_url = $_POST['last_url'];
+
+        if ($last_url == "carikelas") {
+            $data['nilai'] = $this->model('NilaiModel')->cariNilai_kelas();
+            $data['kelas'] = $cari; 
+            $this->view('nilai/nilai_cetakpdf',$data);
+
+        }elseif ($last_url == "carisiswa") {
+            Flasher::setMessage('gagal', 'harap masukkan tanggal dan kelas', 'danger');
+            header('location: ' . base_url . '/nilaisiswa');
+
+        }else{
+            Flasher::setMessage('gagal', 'harap masukkan tanggal dan kelas', 'danger');
+            header('location: ' . base_url . '/nilaisiswa');
+
+        }
+
     }
 }

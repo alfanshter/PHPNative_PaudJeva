@@ -2,11 +2,11 @@
 
 class DetailSiswa extends Controller
 {
-    public function index($id_siswa)
+    public function index($id)
     {
 
         $data['title'] = 'Halaman Detail Siswa';
-        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id_siswa);
+        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('dashboard/detailsiswa', $data);

@@ -1,5 +1,5 @@
 <?php
-$id_siswa = 0;
+$id = 0;
 ?>
 <div class="content mt-5">
     <div class="container-fluid">
@@ -74,14 +74,14 @@ $id_siswa = 0;
 
                                         foreach ($data['datasiswa_all'] as $siswa) : ?>
                                             <form action="<?= base_url; ?>/datasiswa/deletesiswa" method="POST">
-                                                <input type="hidden" value="<?= $siswa['id_siswa']; ?>" name="id_siswa">
+                                                <input type="hidden" value="<?= $siswa['id']; ?>" name="id">
                                                 <tr>
                                                     <th scope="row"><?= $i; ?></th>
                                                     <td><?php echo $siswa['nama'] ?></td>
                                                     <td>
 
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $siswa['id_siswa']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $siswa['id']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
 

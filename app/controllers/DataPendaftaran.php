@@ -34,22 +34,22 @@ class DataPendaftaran extends Controller
         $this->view('templates/footer', $data);
     }
 
-    public function detail($id_siswa)
+    public function detail($id)
     {
 
         $data['title'] = 'Halaman Detail Siswa';
-        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id_siswa);
+        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('datapendaftaran/detailpendaftaran', $data);
         $this->view('templates/footer', $data);
     }
 
-    public function detail_aktifasi($id_siswa)
+    public function detail_aktifasi($id)
     {
 
         $data['title'] = 'Halaman Detail Siswa';
-        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id_siswa);
+        $data['detailsiswa'] = $this->model('SiswaModel')->getdatasiswa($id);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('datapendaftaran/detailaktifasi', $data);
@@ -76,6 +76,80 @@ class DataPendaftaran extends Controller
                 Flasher::setMessage('Berhasil', 'DiAktifasi', 'success');
                 header('location: ' . base_url . '/datapendaftaran');
             }
+        } else {
+            Flasher::setMessage('Gagal', 'DiAktifasi', 'danger');
+            header('location: ' . base_url . '/datapendaftaran');
+        }
+    }
+
+    public function editfoto($nik)
+    {
+
+
+        $data['title'] = 'Halaman Foto';
+        $data['biodata'] = $this->model('SiswaModel')->getbiodata($nik);
+
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('datapendaftaran/detailfoto', $data);
+        $this->view('templates/footer', $data);
+    }
+
+    public function editkk($nik)
+    {
+
+
+        $data['title'] = 'Halaman Foto';
+        $data['biodata'] = $this->model('SiswaModel')->getbiodata($nik);
+
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('datapendaftaran/detailfotokk', $data);
+        $this->view('templates/footer', $data);
+    }
+
+    public function editakte($nik)
+    {
+
+
+        $data['title'] = 'Halaman Foto';
+        $data['biodata'] = $this->model('SiswaModel')->getbiodata($nik);
+
+        $this->view('templates/header', $data);
+        $this->view('templates/sidebar', $data);
+        $this->view('datapendaftaran/detailfotoakte', $data);
+        $this->view('templates/footer', $data);
+    }
+    public function ProsesEditFoto()
+    {
+
+        if ($this->model('SiswaModel')->editFotoSiswaAdmin($_POST, $_FILES) > 0) {
+            Flasher::setMessage('Berhasil', 'DiAktifasi', 'success');
+            header('location: ' . base_url . '/datapendaftaran');
+        } else {
+            Flasher::setMessage('Gagal', 'DiAktifasi', 'danger');
+            header('location: ' . base_url . '/datapendaftaran');
+        }
+    }
+
+    public function ProsesEditKK()
+    {
+
+        if ($this->model('SiswaModel')->editKKSiswaAdmin($_POST, $_FILES) > 0) {
+            Flasher::setMessage('Berhasil', 'DiAktifasi', 'success');
+            header('location: ' . base_url . '/datapendaftaran');
+        } else {
+            Flasher::setMessage('Gagal', 'DiAktifasi', 'danger');
+            header('location: ' . base_url . '/datapendaftaran');
+        }
+    }
+
+    public function ProsesEditAkte()
+    {
+
+        if ($this->model('SiswaModel')->editAkteSiswaAdmin($_POST, $_FILES) > 0) {
+            Flasher::setMessage('Berhasil', 'DiAktifasi', 'success');
+            header('location: ' . base_url . '/datapendaftaran');
         } else {
             Flasher::setMessage('Gagal', 'DiAktifasi', 'danger');
             header('location: ' . base_url . '/datapendaftaran');

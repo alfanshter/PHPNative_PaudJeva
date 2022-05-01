@@ -1,5 +1,5 @@
 <?php
-$id_siswa = 0;
+$id = 0;
 ?>
 <div class="content mt-5">
     <div class="container-fluid">
@@ -54,7 +54,7 @@ $id_siswa = 0;
                                                     <!-- <td>
 
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $siswa['id_siswa']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
+                                                            <a href="<?= base_url; ?>/detailsiswa/<?= $siswa['id']; ?>" class="btn btn-success"><span style="color: white" class="material-icons">
                                                                     remove_red_eye
                                                                 </span></a>
 

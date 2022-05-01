@@ -23,4 +23,12 @@ class DetailGuru extends Controller
             header('location: ' . base_url . '/dataguru');
         }
     }
+
+    public function ProsesEditFoto()
+    {
+        if ($this->model('GuruModel')->editfoto($_FILES, $_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'diedit', 'success');
+            header('location: ' . base_url . '/dataguru');
+        }
+    }
 }

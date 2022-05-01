@@ -3,7 +3,7 @@
 class JadwalModel
 {
 
-    private $table = 'tb_jadwal';
+    private $table = 'jadwal_kegiatans';
     private $db;
 
     public function __construct()
@@ -14,48 +14,48 @@ class JadwalModel
 
     public function getJadwal()
     {
-        $query = "SELECT * FROM tb_jadwal";
+        $query = "SELECT * FROM jadwal_kegiatans";
         $this->db->query($query);
         return $this->db->resultSet();
     }
 
-    public function getDetailJadwal($id_jadwal)
+    public function getDetailJadwal($id)
     {
-        $query = "SELECT * FROM tb_jadwal WHERE id_jadwal = $id_jadwal";
+        $query = "SELECT * FROM jadwal_kegiatans WHERE id = $id";
         $this->db->query($query);
         return $this->db->single();
     }
     public function insertJadwal($data)
     {
-        $query = "INSERT INTO tb_jadwal (waktu_jadwal, kegiatan_jadwal) 
-        VALUES (:jadwal,:nama_kegiatan);";
+        $query = "INSERT INTO jadwal_kegiatans (jadwal, kegiatan) 
+        VALUES (:jadwal,:kegiatan);";
         $this->db->query($query);
         $this->db->bind('jadwal', $data['jadwal']);
-        $this->db->bind('nama_kegiatan', $data['nama_kegiatan']);
+        $this->db->bind('kegiatan', $data['kegiatan']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function updatejadwal($data)
+    public function update($data)
     {
-        $id_jadwal = $data['id_jadwal'];
-        $query = "UPDATE tb_jadwal 
+        $id = $data['id'];
+        $query = "UPDATE jadwal_kegiatans 
         SET
-         waktu_jadwal = :waktu_jadwal,
-         kegiatan_jadwal = :kegiatan_jadwal
-         WHERE id_jadwal = $id_jadwal";
+         jadwal = :jadwal,
+         kegiatan = :kegiatan
+         WHERE id = $id";
         $this->db->query($query);
-        $this->db->bind('waktu_jadwal', $data['waktu_jadwal']);
-        $this->db->bind('kegiatan_jadwal', $data['nama_kegiatan']);
+        $this->db->bind('jadwal', $data['jadwal']);
+        $this->db->bind('kegiatan', $data['kegiatan']);
         $this->db->execute();
 
         return $this->db->rowCount();
     }
 
-    public function deleteJadwal($id_jadwal)
+    public function deleteJadwal($id)
     {
-        $query = "DELETE FROM tb_jadwal WHERE id_jadwal = $id_jadwal";
+        $query = "DELETE FROM jadwal_kegiatans WHERE id = $id";
         $this->db->query($query);
         $this->db->execute();
 

@@ -2,11 +2,11 @@
 
 class DetailKeuangan extends Controller
 {
-    public function index($id_siswa)
+    public function index($id)
     {
 
         $data['title'] = 'Halaman Detail Keuangan';
-        $data['detailkeuangan'] = $this->model('KeuanganModel')->getKeuanganDetail($id_siswa);
+        $data['detailkeuangan'] = $this->model('KeuanganModel')->getKeuanganDetail($id);
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('dashboard/detail_keuangan', $data);

@@ -5,17 +5,24 @@ class AbsenSiswa extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Absen Siswa';
-        $data['absen'] = $this->model('AbsenModel')->getAbsen();
-        $data['datasiswa_all'] = $this->model('SiswaModel')->getdataallsiswa();
-        $this->view('templates/header', $data);
-        $this->view('templates/sidebar', $data);
-        $this->view('dashboard/absen', $data);
-        $this->view('templates/footer', $data);
-    }
+        
+        if ($_SESSION["role"] == 0) {
+            $data['absen'] = $this->model('AbsenModel')->getAbsen();
 
-    public function tambahAbsen()
+        }elseif ($_SESSION["role"] == 1) {
+            $data['absen'] = $this->model('AbsenModel')->getAbsenSiswa();
+        }
+        
+        $data['siswa'] = $this->model('BiodataModel')->index();
+        $this->view('absen/absen', $data);
+
+    }
+    
+    
+
+    public function insert()
     {
-        if ($this->model('AbsenModel')->tambahAbsen($_POST) > 0) {
+        if ($this->model('AbsenModel')->insert($_POST) > 0) {
             Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
             header('location: ' . base_url . '/absensiswa');
         } else {
@@ -24,9 +31,20 @@ class AbsenSiswa extends Controller
         }
     }
 
-    public function hapusAbsen($id_absen)
+    public function update()
     {
-        if ($this->model('AbsenModel')->hapusAbsen($id_absen) > 0) {
+        if ($this->model('AbsenModel')->update($_POST) > 0) {
+            Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
+            header('location: ' . base_url . '/absensiswa');
+        } else {
+            Flasher::setMessage('gagal', 'ditambahkan', 'danger');
+            header('location: ' . base_url . '/absensiswa');
+        }
+    }
+
+    public function delete($id_absen)
+    {
+        if ($this->model('AbsenModel')->delete($id_absen) > 0) {
             Flasher::setMessage('Berhasil', 'ditambahkan', 'success');
             header('location: ' . base_url . '/absensiswa');
         } else {

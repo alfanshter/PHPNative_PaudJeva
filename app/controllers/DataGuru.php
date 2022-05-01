@@ -14,7 +14,7 @@ class DataGuru extends Controller
 
     public function TambahGuru()
     {
-        if ($this->model('GuruModel')->tambahGuru($_POST) > 0) {
+        if ($this->model('GuruModel')->tambahGuru($_POST, $_FILES) > 0) {
             Flasher::setMessage('Berhasil', 'ditambah', 'success');
             header('location: ' . base_url . '/dataguru');
         } else {

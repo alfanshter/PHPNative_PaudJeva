@@ -365,13 +365,15 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
       @endif -->
             <!-- Icon -->
+            <a href="<?= base_url ?>"><img src="<?= base_url; ?>/img/silang.png" /></a>
+
             <div class="fadeIn first">
                 <h2>Aktifasi Akun</h2>
             </div>
 
             <!-- Login Form -->
             <form action="<?= base_url; ?>/aktifasi/aktifasisiswa" method="POST">
-                <input type="text" autocomplete="off" required id="username" class="fadeIn second" name="username" placeholder="Masukkan NIK">
+                <input type="text" autocomplete="off" required id="username" class="fadeIn second" name="username" placeholder="Masukkan Username">
                 <input type="password" id="password" required class="fadeIn third" name="password" placeholder="Buat Sandi">
                 <input type="submit" class="fadeIn fourth" value="Aktifasi Akun">
             </form>

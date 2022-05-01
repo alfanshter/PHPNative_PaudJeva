@@ -81,6 +81,11 @@
                                         <input type="number" name="pijakan_setelah_bermain" class="form-control" value="<?= $data['detailnilai']['pijakan_setelah_bermain']; ?>" required>
                                     </div>
 
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Komentar Nilai</label><br>
+                                        <textarea required id="komentar_nilai" name="komentar_nilai" rows="4" cols="50"> <?= $data['detailnilai']['komentar_nilai']; ?></textarea>
+                                    </div>
+
 
                                     <center>
                                         <button type="submit" class="btn btn-primary">
