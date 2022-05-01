@@ -17,7 +17,7 @@ $this->view('templates/mainmenu',$data);
 ?>
             <div class="position-relative h-100 m-3 px-7 d-flex flex-column justify-content-center">
                 <div class="col-12">
-                    <div class="card my-4">
+                    <div class="card my-4" style="background: rgba(255, 254, 254, 0.83);">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h4 class="text-white text-capitalize ps-3">Nilai Siswa Paud Assibyan</h4>
@@ -134,30 +134,30 @@ $this->view('templates/mainmenu',$data);
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr class="border-radius-lg" style="background-color:#b0c4ee;">
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder ">
                                                 Tanggal</th>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2 text-center">
+                                                class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2 text-center">
                                                 Nama</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Kelas</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Bermain</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Ikrar Bersama</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Senan Irama</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Bernyanyi</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Berdoa</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Pijakan Sebelum Bermain</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Pijakan Setelah Bermain</th>
                                             <?php if ($_SESSION["role"] ==0) {
                                                 ?>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Aksi</th>
 
                                             <?php }?>
@@ -177,28 +177,28 @@ $this->view('templates/mainmenu',$data);
                                         </tr>
                                         <?php  foreach ($data['nilai'] as $item): ?>
                                         <tr>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark " style="border-right:1pt solid black;">
                                                 <?= $item['tanggal'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['nama'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['kelas'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['bermain'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['ikrar_bersama'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['senam_irama'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['bernyanyi'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['berdoa'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['pijakan_sebelum_bermain'] ?></td>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <?= $item['pijakan_setelah_bermain'] ?></td>
                                             <?php if ($_SESSION["role"]==0) {?>
-                                            <td class="text-center" style="border-right:1pt solid black;">
+                                            <td class="text-center text-dark" style="border-right:1pt solid black;">
                                                 <a href="<?= base_url ?>/nilaisiswa/editnilai/<?= $item['id'] ?>"
                                                     type="button" class="btn btn-xs bg-gradient-success">
                                                     <img src="assets_baru/img/illustrations/eye.png" alt="" width="20"
@@ -226,32 +226,33 @@ $this->view('templates/mainmenu',$data);
                             </div>
                             <hr style="color:black;">
                             <?php if ($_SESSION["role"] ==1) { ?>
-                            <div style="margin-left: 20px;margin-right: 20px;">
-                                <div class="d-flex flex-row">
-                                    <p> Tahun : </p>
-                                    <div style="margin-left: 10px; width:100%" class="d-flex flex-column">
-                                        <input type="text" class="btn btn-xs bg-gradient-light " style="width: 150px;"
-                                            placeholder="Tulis tahun">
-                                        <div class="position-relative">
-                                            <button type="submit" class="btn btn-xs bg-gradient-light">
-                                                Cari
-                                            </button>
+                            <form action="" method="post">
+                                <div style="margin-left: 20px;margin-right: 20px;">
+                                    <div class="d-flex flex-row">
+                                        <p class="text-dark text-bold" > TAHUN </p>
+                                        <div style="margin-left: 10px; width:100%" class="d-flex flex-column">
+                                            <input type="text" class="btn btn-xs bg-gradient-light " style="width: 150px;"
+                                                placeholder="Tulis tahun">
+                                            <div class="position-relative">
+                                                <button type="submit" class="btn btn-xs bg-gradient-light">
+                                                    Cari
+                                                </button>
 
-                                            <button type="button"
-                                                class="btn btn-warning ml-auto position-absolute  end-0"
-                                                style="width: 300px;">
-                                                <img src="assets_baru/img/illustrations/pdf-btn.png" alt="Kegiatan"
-                                                    width="40" height="40"> Cetak Nilai Kamu </button>
+                                                <button type="button"
+                                                    class="btn btn-warning ml-auto position-absolute  end-0"
+                                                    style="width: 300px;">
+                                                    <img src="assets_baru/img/illustrations/pdf-btn.png" alt="Kegiatan"
+                                                        width="40" height="40"> Cetak Nilai Kamu </button>
+                                            </div>
+
+
+
                                         </div>
-
-
 
                                     </div>
 
                                 </div>
-
-                            </div>
-
+                            </form>
                             <?php }?>
 
                             <br>
@@ -273,10 +274,10 @@ $this->view('templates/mainmenu',$data);
                                         <thead>
                                             <tr class="border-radius-lg" style="background-color:#b0c4ee;">
                                                 <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder  text-center">
+                                                    class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  text-center">
                                                     Tanggal</th>
                                                 <th
-                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2 text-center">
+                                                    class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2 text-center">
                                                     Komentar Nilai</th>
                                             </tr>
                                         </thead>

@@ -43,12 +43,12 @@
     }
 
     .mainmenubtn {
-        background-color: white;
+
         color: white;
         border: none;
         cursor: pointer;
         padding: 20px;
-        margin-top: 20px;
+
     }
 
     .retangle4 {
@@ -62,7 +62,9 @@
         background: rgba(255, 254, 254, 0);
     }
 
-    .mainmenubtn:hover {}
+    .mainmenubtn:hover {
+                background-color: white;
+    }
 
     .dropdown {
         position: relative;

@@ -15,16 +15,21 @@ $this->view('templates/strtemplate',$data);
             ?>
 
             <div class="row mt-0">
-                <div class="col-lg-4 col-md-6 mt-4 mb-4 retangle4" style="margin-left: 50px;">
+                    <div class="col-lg-3 mt-3 mb-3 retangle4"
+                    style="margin-left: 60px;margin-right: 60px;padding-right: 0px;padding-left: 0px;">
                     <div class="">
-                        <div class="card-body retangle3">
-                            <ul>
-                                <a href="<?= base_url; ?>/jadwalkegiatansiswa">
-                                    <li
-                                        class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0 retangle3">
+                        <div class="card-body retangle3"
+                            style="padding-bottom: 0px;padding-top: 0px;padding-left: 0px;padding-right: 0px;">
+                            <ul style="padding-left: 0px;">
+                                <a href="jadwalkegiatansiswa">
+                                    <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 pt-0 retangle3"
+                                        style="padding-bottom: 0px;margin-bottom: 0px;">
                                         <div class="">
-                                            <img src=<div class="">
-                                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Jadwal Kegiatan Siswa</h4>
+                                            <img src="<?= base_url; ?>/menu/jadwal.png"
+                                                width="120" height="120" alt="kal" class="border-radius-lg shadow">
+                                        </div>
+                                        <div class="d-flex align-items-start flex-column justify-content-center">
+                                            <h4>Jadwal Kegiatan Siswa</h4>
                                         </div>
                                     </li>
                                 </a>

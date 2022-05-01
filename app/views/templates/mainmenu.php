@@ -4,7 +4,7 @@
             <div class="">
                 <div class="dropdown">
                     <div class="mainmenubtn">
-                        <h4><i class="fa fa-bars"></i> Menu Utama</h4>
+                        <h4 style="color: black;"><i class="fa fa-bars" style="margin-right:10px"></i> Menu Utama</h4>
                         <div class="dropdown-child">
                             <a href="fasilitas"><img src="<?= base_url; ?>/assets_baru/img/menu/imgfasilitas.svg"
                                     alt="fasilitas" width="40" height="40">Fasilitas Paud Assibyan</a>

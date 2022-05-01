@@ -17,6 +17,14 @@ class SiswaModel
         return $this->db->resultSet();
     }
 
+    public function getadmin()
+    {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('id', $_SESSION['id']);
+        return $this->db->single();
+    }
+
     public function getsiswa()
     {
         $query = "SELECT * FROM users WHERE role = 1";
@@ -174,21 +182,6 @@ class SiswaModel
 
         return $this->db->rowCount();
 
-        // if ($_FILES['btn_editfoto']['name'] == null && $_FILES['btn_editkk']['name'] == null && $_FILES['btn_editakte']['name'] == null) {
-        //     var_dump('alfan');
-        //     prosesupdate($data);
-        // }
-        // // $fotosiswa = $foto['edit_foto']['name'];
-
-        // // $tmpfotosiswa = $foto['edit_foto']['tmp_name'];
-
-        // // $fotosiswabaru = date('dmYHis') . $fotosiswa;
-        // // // Set path folder tempat menyimpan fotonya
-        // // $pathfotosiswa = "img/" . $fotosiswabaru;
-
-
-        // // if (move_uploaded_file($tmpfotosiswa, $pathfotosiswa)) {
-        // // }
     }
 
     public function hapussiswa($data)
@@ -303,25 +296,28 @@ class SiswaModel
         return $this->db->single();
     }
 
-    public function editfoto($foto)
+    public function updatefotoadmin($post)
     {
-        $fotosiswa = $foto['edit_foto']['name'];
+        $fotosiswa = $_FILES['foto']['name'];
 
-        $tmpfotosiswa = $foto['edit_foto']['tmp_name'];
+        $tmpfotosiswa = $_FILES['foto']['tmp_name'];
 
         $fotosiswabaru = date('dmYHis') . $fotosiswa;
         // Set path folder tempat menyimpan fotonya
         $pathfotosiswa = "img/" . $fotosiswabaru;
 
+                //hapus
+        unlink("img/$_POST[oldImage]");
+
 
         if (move_uploaded_file($tmpfotosiswa, $pathfotosiswa)) {
 
-            $query = "UPDATE tb_siswa  
+            $query = "UPDATE users  
                 SET
                  foto= :foto
-            WHERE nik = :kode_siswa";
+            WHERE id = :id";
             $this->db->query($query);
-            $this->db->bind('kode_siswa', $_SESSION['id']);
+            $this->db->bind('id', $post['id']);
             $this->db->bind('foto', $fotosiswabaru);
             $this->db->execute();
 
@@ -340,6 +336,7 @@ class SiswaModel
         // Set path folder tempat menyimpan fotonya
         $pathfotosiswa = "img/" . $fotosiswabaru;
         $nik = $data['nik'];
+
         if (move_uploaded_file($tmpfotosiswa, $pathfotosiswa)) {
 
             $query = "UPDATE tb_siswa  

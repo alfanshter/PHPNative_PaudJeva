@@ -18,7 +18,7 @@ $this->view('templates/strtemplate',$data);
 
             <div class="position-relative h-100 m-3 px-7 d-flex flex-column justify-content-center">
                 <div class="col-12">
-                    <div class="card my-4">
+                    <div class="card my-4" style="background: rgba(255, 254, 254, 0.83);">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h4 class="text-white text-capitalize ps-3">ABSENSI SISWA PAUD ASSIBYAN</h4>
@@ -69,22 +69,22 @@ $this->view('templates/strtemplate',$data);
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr class="border-radius-lg" style="background-color:#b0c4ee;">
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">No
+                                            <th class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder ">No
                                             </th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Nama
+                                            <th class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder ">Nama
                                             </th>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2 text-center">
+                                                class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder  ps-2 text-center">
                                                 Kelas</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Tanggal</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Hadir / Tidak Hadir</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-center text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Keterangan</th>
                                             <?php if ($_SESSION["role"] ==0) {
                                                 ?>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">
+                                            <th class="text-uppercase text-secondary text-xxs text-dark  font-weight-bolder  ps-2">
                                                 Aksi</th>
 
                                             <?php }?>
@@ -93,21 +93,21 @@ $this->view('templates/strtemplate',$data);
                                     <tbody>
                                         <?php $no = 0;  foreach($data['absen'] as $item) : $no++?>
                                         <tr>
-                                            <td class="text-left"><?= $no ?></td>
-                                            <td class="text-left"><?= $item['nama'] ?></td>
-                                            <td class="text-left"><?= $item['kelas'] ?></td>
-                                            <td class="text-left"><?= $item['tanggal'] ?></td>
+                                            <td class="text-center text-dark"><?= $no ?></td>
+                                            <td class="text-center text-dark "><?= $item['nama'] ?></td>
+                                            <td class="text-center text-dark "><?= $item['kelas'] ?></td>
+                                            <td class="text-center text-dark "><?= $item['tanggal'] ?></td>
                                             <?php if($item['absen'] == 0){?>
-                                            <td class="text-left">Tidak Hadir</td>
+                                            <td class="text-center text-dark ">Tidak Hadir</td>
                                             <?php }?>
                                             <?php if($item['absen'] == 1) {?>
-                                            <td class="text-left">Hadir</td>
+                                            <td class="text-center text-dark ">Hadir</td>
                                             <?php }?>
 
-                                            <td class="text-left"><?= $item['keterangan'] ?></td>
+                                            <td class="text-center text-dark "><?= $item['keterangan'] ?></td>
                                             <?php if ($_SESSION["role"] == 0) {
                                             ?>
-                                            <td class="align-middle text-center">
+                                            <td class="align-middle text-center text-dark ">
                                                 <div class="d-flex justify-content-sm-center mt-2">
                                                     <input type="image" src="tombol/btnmata.png" name="button"
                                                         data-bs-toggle="modal"
