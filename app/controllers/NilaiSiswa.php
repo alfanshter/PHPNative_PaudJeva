@@ -5,17 +5,16 @@ class NilaiSiswa extends Controller
     public function index()
     {
         $data['title'] = 'Halaman Data Siswa';
-        if ($_SESSION["role"]==0) {
+        if ($_SESSION["role"] == 0) {
             $data['nilai'] = $this->model('NilaiModel')->index();
-        }elseif ($_SESSION["role"]==1){
+        } elseif ($_SESSION["role"] == 1) {
             $data['nilai'] = $this->model('NilaiModel')->getNilaisiswa();
-            
         }
-        
+
         $data['siswa'] = $this->model('BiodataModel')->index();
         $this->view('nilai/nilai', $data);
     }
-    
+
     public function carisiswa()
     {
         $data['title'] = 'Halaman Data Siswa';
@@ -30,6 +29,14 @@ class NilaiSiswa extends Controller
         $data['cari'] = $_POST['cari'];
         $data['tanggal'] = $_POST['tanggal'];
         $data['nilai'] = $this->model('NilaiModel')->cariNilai_kelas();
+        $this->view('nilai/nilai', $data);
+    }
+
+    public function caritahun()
+    {
+        $data['title'] = 'Halaman Data Siswa';
+        $data['tahun'] = $_POST['tahun'];
+        $data['nilai'] = $this->model('NilaiModel')->cariTahun();
         $this->view('nilai/nilai', $data);
     }
 
@@ -56,7 +63,7 @@ class NilaiSiswa extends Controller
             header('location: ' . base_url . '/nilaisiswa');
         }
     }
-    
+
     public function editnilai($id)
     {
         $data['title'] = 'Halaman Edit Siswa';
@@ -78,23 +85,25 @@ class NilaiSiswa extends Controller
 
     public function nilai_pdf()
     {
-        $cari = $_POST['cari'];
         $last_url = $_POST['last_url'];
 
         if ($last_url == "carikelas") {
+            $cari = $_POST['cari'];
             $data['nilai'] = $this->model('NilaiModel')->cariNilai_kelas();
-            $data['kelas'] = $cari; 
-            $this->view('nilai/nilai_cetakpdf',$data);
-
-        }elseif ($last_url == "carisiswa") {
+            $data['kelas'] = $cari;
+            $this->view('nilai/nilai_cetakpdf', $data);
+        } elseif ($last_url == "carisiswa") {
             Flasher::setMessage('gagal', 'harap masukkan tanggal dan kelas', 'danger');
             header('location: ' . base_url . '/nilaisiswa');
-
-        }else{
+        } else {
             Flasher::setMessage('gagal', 'harap masukkan tanggal dan kelas', 'danger');
             header('location: ' . base_url . '/nilaisiswa');
-
         }
+    }
 
+    public function cetakpdf($tahun)
+    {
+        $data['nilai'] = $this->model('NilaiModel')->pdfSiswa($tahun);
+        $this->view('nilai/nilai_cetakpdfsiswa', $data);
     }
 }

@@ -25,7 +25,7 @@ class NilaiModel
     public function cariNilai()
     {
         $cari = $_POST['cari'];
-        
+
         $query = "SELECT n.* ,u.nama, b.kelas
                 FROM nilais n
                 JOIN biodata_siswas b ON n.biodata_siswa_id = b.id 
@@ -40,7 +40,7 @@ class NilaiModel
     {
         $cari = $_POST['cari'];
         $tanggal = $_POST['tanggal'];
-        
+
         $query = "SELECT n.* ,u.nama, b.kelas
                 FROM nilais n
                 JOIN biodata_siswas b ON n.biodata_siswa_id = b.id 
@@ -49,6 +49,35 @@ class NilaiModel
         $this->db->query($query);
         $this->db->bind('cari', "%$cari%");
         $this->db->bind('tanggal', "%$tanggal%");
+        return $this->db->resultSet();
+    }
+
+    public function cariTahun()
+    {
+        $tahun = $_POST['tahun'];
+        $id = $_SESSION["id"];
+        $query = "SELECT n.* ,u.nama, b.kelas
+         FROM nilais n
+         JOIN biodata_siswas b ON n.biodata_siswa_id = b.id 
+         JOIN users u ON b.user_id = u.id 
+         WHERE u.id= $id AND n.tanggal LIKE :tahun 
+         ORDER BY n.tanggal DESC";
+        $this->db->query($query);
+        $this->db->bind('tahun', "%$tahun%");
+        return $this->db->resultSet();
+    }
+
+    public function pdfSiswa($tahun)
+    {
+        $id = $_SESSION["id"];
+        $query = "SELECT n.* ,u.nama, b.kelas
+         FROM nilais n
+         JOIN biodata_siswas b ON n.biodata_siswa_id = b.id 
+         JOIN users u ON b.user_id = u.id 
+         WHERE u.id= $id AND n.tanggal LIKE :tahun 
+         ORDER BY n.tanggal DESC";
+        $this->db->query($query);
+        $this->db->bind('tahun', "%$tahun%");
         return $this->db->resultSet();
     }
 
@@ -68,7 +97,7 @@ class NilaiModel
     public function getNilaisiswa()
     {
         $id = $_SESSION["id"];
-          $query = "SELECT n.* ,u.nama, b.kelas
+        $query = "SELECT n.* ,u.nama, b.kelas
          FROM nilais n
          JOIN biodata_siswas b ON n.biodata_siswa_id = b.id 
          JOIN users u ON b.user_id = u.id 

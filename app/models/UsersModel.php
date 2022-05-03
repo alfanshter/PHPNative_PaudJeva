@@ -41,4 +41,26 @@ class UsersModel
 
         return $this->db->rowCount();
     }
+
+    public function cekpassword($post)
+    {
+        $query = "SELECT * FROM users  where id = :id and password = :password";
+        $this->db->query($query);
+        $this->db->bind('password', $post['password_lama']);
+        $this->db->bind('id', $_SESSION['id']);
+        return $this->db->single();
+    }
+    public function gantipassword($post)
+    {
+        $query = "UPDATE users  
+        SET
+         password=:password
+            WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('password', $post['password_baru']);
+        $this->db->bind('id', $_SESSION['id']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
